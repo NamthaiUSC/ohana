@@ -11,6 +11,7 @@ require("./services/passport");
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const universityRoutes = require("./routes/universityRoutes");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
@@ -36,6 +37,7 @@ app.use(passport.session());
 
 authRoutes(app);
 userRoutes(app);
+universityRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

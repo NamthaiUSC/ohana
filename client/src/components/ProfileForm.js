@@ -23,7 +23,7 @@ class ProfileForm extends Component {
 							type="text"
 							label="First Name"
 							name="givenName"
-							placeholder="Daenarys"
+							placeholder="Jon"
 						/>
 					</div>
 					<div className="column is-one-third">
@@ -32,6 +32,7 @@ class ProfileForm extends Component {
 							type="text"
 							label="City"
 							name="city"
+							icon={<i className="fas fa-globe-asia fa-fw" />}
 							placeholder="Bangkok"
 						/>
 					</div>
@@ -57,6 +58,7 @@ class ProfileForm extends Component {
 							component={InfoField}
 							type="number"
 							label="Grad Year"
+							icon={<i className="fas fa-graduation-cap" />}
 							name="highSchoolGradYear"
 						/>
 					</div>
@@ -90,6 +92,7 @@ class ProfileForm extends Component {
 							type="text"
 							label="Major"
 							name="major"
+							icon={<i className="fas fa-book fa-fw" />}
 							placeholder="Computer Science"
 						/>
 					</div>
@@ -98,6 +101,7 @@ class ProfileForm extends Component {
 							component={InfoField}
 							type="number"
 							label="Grad Year"
+							icon={<i className="fas fa-graduation-cap" />}
 							name="universityGradYear"
 						/>
 					</div>

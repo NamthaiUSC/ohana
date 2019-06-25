@@ -1,10 +1,19 @@
 import React from "react";
 
-export default ({ input, label, placeholder, meta: { error, touched } }) => {
+export default ({
+	input,
+	label,
+	placeholder,
+	icon,
+	meta: { error, touched }
+}) => {
 	return (
 		<div>
 			<label className="subtitle is-5">{label}</label>
-			<input className="input" {...input} placeholder={placeholder} />
+			<p className="control has-icons-right">
+				<input className="input" {...input} placeholder={placeholder} />
+				<span className="icon is-small is-right">{icon}</span>
+			</p>
 			<div className="has-text-danger">{touched && error}</div>
 		</div>
 	);

@@ -33,6 +33,10 @@ passport.use(
 
 			if (existingUser) {
 				// profile id already exists
+				existingUser.photoURL = profile.photos[0].value;
+				existingUser.familyName = profile.name.familyName;
+				existingUser.email = profile.emails[0].value;
+				await existingUser.save();
 				done(null, existingUser);
 			} else {
 				//create new profile

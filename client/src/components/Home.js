@@ -14,15 +14,18 @@ export class Home extends Component {
 
 	renderHome() {
 		return (
-			<div className="columns">
-				<div className="column is-one-fifth ">
-					<Dashboard />
-				</div>
-				<div className="column ">
-					<SchoolSection />
-				</div>
-				<div className="column is-one-fifth">
-					<ProfileCard />
+			<div>
+				<br />
+				<div className="columns">
+					<div className="column is-one-fifth ">
+						<Dashboard />
+					</div>
+					<div className="column ">
+						<SchoolSection />
+					</div>
+					<div className="column is-one-fifth">
+						<ProfileCard />
+					</div>
 				</div>
 			</div>
 		);
