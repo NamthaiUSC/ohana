@@ -1,29 +1,66 @@
-import React from "react";
-import _ from "lodash";
-import Universities from "../data/universities";
+import React, { Component } from "react";
+import Select, { createFilter } from "react-select";
+import { FixedSizeList as List } from "react-window";
 
-export default ({ input, label, currentSchool, meta: { error, touched } }) => {
-	console.log("form");
-	let universityArray = [];
-	let count = 1;
-	universityArray.push(<option key={0}>{currentSchool}</option>);
-	_.map(Universities, ({ name }) => {
-		universityArray.push(<option key={count}>{name} </option>);
-		count++;
-	});
+const height = 35;
 
-	return (
-		<div>
-			<label className="subtitle is-5">{label}</label>
-			<div className="control has-icons-left">
-				<div className="select" {...input}>
-					<select>{universityArray}</select>
-				</div>
-				<span className="icon is-left">
-					<i className="fas fa-university" />
-				</span>
+class MenuList extends Component {
+	render() {
+		const { options, children, maxHeight, getValue } = this.props;
+		const [value] = getValue();
+		const initialOffset = options.indexOf(value) * height;
+
+		return (
+			<List
+				height={height * 8}
+				itemCount={children.length}
+				itemSize={height}
+				initialScrollOffset={initialOffset}
+			>
+				{({ index, style }) => (
+					<div style={style}>{children[index]}</div>
+				)}
+			</List>
+		);
+	}
+}
+
+export class UniField extends Component {
+	state = {
+		selectedOption: null
+	};
+
+	handleChange = selectedOption => {
+		this.setState({ selectedOption });
+	};
+
+	render() {
+		const { selectedOption } = this.state;
+		const { data, input, currentSchool, label } = this.props;
+		return (
+			<div>
+				<label className="subtitle is-5">{label}</label>
+				<Select
+					label="Single select"
+					{...input}
+					options={data}
+					value={selectedOption}
+					onChange={value => {
+						this.handleChange();
+						input.onChange(value.value);
+					}}
+					onBlur={() => input.onBlur(input.value)}
+					components={{ MenuList }}
+					filterOption={createFilter({ ignoreAccents: false })}
+					placeholder={
+						<span>
+							<i className="fas fa-university" /> {currentSchool}
+						</span>
+					}
+				/>
 			</div>
-			<div className="has-text-danger">{touched && error}</div>
-		</div>
-	);
-};
+		);
+	}
+}
+
+export default UniField;

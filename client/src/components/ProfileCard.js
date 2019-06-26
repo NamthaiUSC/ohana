@@ -35,22 +35,23 @@ export class ProfileCard extends Component {
 						<i className="far fa-envelope fa-fw" />{" "}
 						<span> nkedia@usc.edu</span>
 					</div>
+					<div>
+						<span className="icon">
+							<i className="fas fa-university" />
+						</span>{" "}
+						<span>University of southern California (2021)</span>
+					</div>
+					<div>
+						<span className="icon">
+							<i className="fas fa-school" />
+						</span>{" "}
+						<span>Ruamrudee International School (2017)</span>
+					</div>
 					<br />
 					<p className="menu-label">Contact Information</p>
 					<ul className="menu-list">
 						<li>
 							<Link>nkedia@usc.edu</Link>
-						</li>
-					</ul>
-					<p className="menu-label">Naman's Schools</p>
-					<ul className="menu-list">
-						<li>
-							<Link>Ruamrudee International School (2017)</Link>
-						</li>
-						<li>
-							<Link>
-								University of Southern California (2021)
-							</Link>
 						</li>
 					</ul>
 				</aside>

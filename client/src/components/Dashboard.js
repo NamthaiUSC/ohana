@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 export class Dashboard extends Component {
 	renderMyUni() {
 		if (this.props.auth.university) {
-			console.log(this.props.auth.university.universityName);
 			return (
 				<li>
 					<span className="icon">
@@ -33,7 +32,7 @@ export class Dashboard extends Component {
 				universityGradYear
 			} = this.props.auth;
 			return (
-				<div className="box has-background-white-bis">
+				<div className="box ">
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column is-two-fifths">
@@ -47,7 +46,7 @@ export class Dashboard extends Component {
 							</div>
 							<div className="column has-text-centered">
 								<div>
-									<p className="subtitle is-4">{givenName}</p>
+									<p className="subtitle is-3">{givenName}</p>
 									<p className="title is-4">{familyName}</p>
 								</div>
 							</div>

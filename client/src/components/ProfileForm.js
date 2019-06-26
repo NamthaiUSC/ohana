@@ -10,7 +10,6 @@ import HighSchoolField from "./HighSchoolField";
 class ProfileForm extends Component {
 	componentDidMount() {
 		this.props.initialize(this.props.initialValues);
-		console.log(this.props.initialValues);
 	}
 
 	renderNameAndCityField() {
@@ -71,20 +70,6 @@ class ProfileForm extends Component {
 	renderUniversityField() {
 		return (
 			<div>
-				<div>
-					<Field
-						component={UniField}
-						type="text"
-						label="University"
-						name="universityName"
-						currentSchool={
-							this.props.auth.university
-								? this.props.auth.university.universityName
-								: "None"
-						}
-					/>
-				</div>
-				<br />
 				<div className="columns">
 					<div className="column">
 						<Field
@@ -105,6 +90,20 @@ class ProfileForm extends Component {
 							name="universityGradYear"
 						/>
 					</div>
+				</div>
+				<div>
+					<Field
+						component={UniField}
+						type="text"
+						label="University"
+						name="universityName"
+						data={this.props.data}
+						currentSchool={
+							this.props.auth.university
+								? this.props.auth.university.universityName
+								: "None"
+						}
+					/>
 				</div>
 				<br />
 			</div>
@@ -128,11 +127,11 @@ class ProfileForm extends Component {
 				{this.renderHighSchoolField()}
 				<div className="notification has-background-grey-lighter is-italic">
 					Leave the university field below as "None" if you're still
-					in High School.
+					in high school.
 					<br />
 					<br />
 					Feel free to fill in your intended major and expected
-					graduation date, however.
+					university graduation date, however.
 				</div>
 				<br />
 				{this.renderUniversityField()}

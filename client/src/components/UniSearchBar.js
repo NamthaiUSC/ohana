@@ -14,7 +14,7 @@ class MenuList extends Component {
 
 		return (
 			<List
-				height={maxHeight}
+				height={height * 20}
 				itemCount={children.length}
 				itemSize={height}
 				initialScrollOffset={initialOffset}

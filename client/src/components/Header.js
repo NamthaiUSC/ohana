@@ -46,6 +46,10 @@ class Header extends Component {
 							exitModal={() => {
 								this.setState({ whichModal: "None" });
 							}}
+							data={Universities.map(university => ({
+								label: university.name,
+								value: university.name
+							}))}
 						/>
 					</div>
 				);
@@ -57,13 +61,11 @@ class Header extends Component {
 	renderLogin() {
 		switch (this.props.auth) {
 			case null:
-				return (
-					<div className="button is-danger is-loading">Logout</div>
-				);
+				return <div className="button is-link is-loading">Logout</div>;
 			case false:
 				return (
 					<a
-						className="button is-danger"
+						className="button is-link"
 						href="/auth/google"
 						style={{ color: "white" }}
 					>
@@ -73,7 +75,7 @@ class Header extends Component {
 			default:
 				return (
 					<a
-						className="button is-danger"
+						className="button is-link"
 						href="/api/logout"
 						style={{ color: "white" }}
 					>
@@ -108,7 +110,7 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar has-background-primary"
+				className="navbar has-shadow has-background-white-bis"
 				role="navigation"
 				aria-label="main navigation"
 			>
@@ -116,7 +118,7 @@ class Header extends Component {
 				<div className="navbar-item" />
 				<div className="navbar-brand">
 					<Link
-						className="title is-2 has-text-danger"
+						className="title is-2 has-text-link"
 						to={this.props.auth ? "/" : "/"}
 					>
 						Ohana
@@ -127,7 +129,7 @@ class Header extends Component {
 					<div className="navbar-start">
 						<Link
 							to={this.props.auth ? "/home" : "/"}
-							className="navbar-item"
+							className="navbar-item title is-5 is-tab"
 						>
 							Home
 						</Link>
