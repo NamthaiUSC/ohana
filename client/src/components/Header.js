@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import UniSearchBar from "./UniSearchBar";
 
-import Universities from "../data/universities";
-
 class Header extends Component {
 	constructor(props) {
 		super(props);
@@ -46,10 +44,6 @@ class Header extends Component {
 							exitModal={() => {
 								this.setState({ whichModal: "None" });
 							}}
-							data={Universities.map(university => ({
-								label: university.name,
-								value: university.name
-							}))}
 						/>
 					</div>
 				);
@@ -61,13 +55,16 @@ class Header extends Component {
 	renderLogin() {
 		switch (this.props.auth) {
 			case null:
-				return <div className="button is-link is-loading">Logout</div>;
+				return (
+					<div className="button is-link is-outlined is-loading">
+						Logout
+					</div>
+				);
 			case false:
 				return (
 					<a
-						className="button is-link"
+						className="button is-link is-outlined"
 						href="/auth/google"
-						style={{ color: "white" }}
 					>
 						<strong>Login with Google</strong>
 					</a>
@@ -75,9 +72,8 @@ class Header extends Component {
 			default:
 				return (
 					<a
-						className="button is-link"
+						className="button is-link is-outlined"
 						href="/api/logout"
-						style={{ color: "white" }}
 					>
 						<strong>Logout</strong>
 					</a>
@@ -94,12 +90,12 @@ class Header extends Component {
 			default:
 				return (
 					<button
-						className="button is-pulled-right"
+						className="button is-pulled-right is-link is-outlined"
 						onClick={() => {
 							this.setState({ whichModal: "EditInfo" });
 						}}
 					>
-						<span className="icon has-text-link">
+						<span className="icon">
 							<i className="fas fa-user-cog" />
 						</span>
 					</button>
@@ -121,18 +117,23 @@ class Header extends Component {
 						className="title is-2 has-text-link"
 						to={this.props.auth ? "/" : "/"}
 					>
-						Ohana
+						<span className="icon is-medium has-text-link">
+							<i className="fas fa-globe-americas" />
+						</span>{" "}
+						hana
 					</Link>
 				</div>
 				<div className="navbar-item" />
 				<div id="navbarBasicExample" className="navbar-menu">
 					<div className="navbar-start">
-						<Link
-							to={this.props.auth ? "/home" : "/"}
-							className="navbar-item title is-5 is-tab"
-						>
-							Home
-						</Link>
+						<div className="navbar-item">
+							<Link
+								to={this.props.auth ? "/home" : "/"}
+								className=" title is-5 is-tab has-text-link"
+							>
+								Home
+							</Link>
+						</div>
 					</div>
 
 					<div className="navbar-item is-expanded has-text-centered is-inline-block">
@@ -140,12 +141,7 @@ class Header extends Component {
 							className="is-inline-block has-text-left"
 							style={{ width: "50%" }}
 						>
-							<UniSearchBar
-								data={Universities.map(university => ({
-									label: university.name,
-									value: university.name
-								}))}
-							/>
+							<UniSearchBar />
 						</div>
 					</div>
 					<div className="navbar-end">

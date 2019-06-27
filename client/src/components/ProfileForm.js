@@ -3,39 +3,68 @@ import { Field, reduxForm } from "redux-form";
 import { updateInfo } from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import InfoField from "./InfoField";
-import UniField from "./UniField";
-import HighSchoolField from "./HighSchoolField";
+import InfoField from "./Fields/InfoField";
+import UniField from "./Fields/UniField";
+import HighSchoolField from "./Fields/HighSchoolField";
+import CountryField from "./Fields/CountryField";
+import CityField from "./Fields/CityField";
 
 class ProfileForm extends Component {
 	componentDidMount() {
 		this.props.initialize(this.props.initialValues);
 	}
 
-	renderNameAndCityField() {
+	renderNameField() {
 		return (
 			<div>
 				<div className="columns">
-					<div className="column">
+					<div className="column is-half">
 						<Field
 							component={InfoField}
 							type="text"
-							label="First Name"
+							label="Display Name"
 							name="givenName"
 							placeholder="Jon"
 						/>
 					</div>
-					<div className="column is-one-third">
+				</div>
+			</div>
+		);
+	}
+
+	renderLocationField() {
+		return (
+			<div>
+				<div className="columns">
+					<div className="column ">
 						<Field
-							component={InfoField}
+							component={CityField}
 							type="text"
 							label="City"
 							name="city"
 							icon={<i className="fas fa-globe-asia fa-fw" />}
-							placeholder="Bangkok"
+							currentValue={
+								this.props.auth.city
+									? this.props.auth.city
+									: "None"
+							}
+						/>
+					</div>
+					<div className="column ">
+						<Field
+							component={CountryField}
+							type="text"
+							label="Country"
+							name="country"
+							currentValue={
+								this.props.auth.country
+									? this.props.auth.country
+									: "None"
+							}
 						/>
 					</div>
 				</div>
+				<br />
 			</div>
 		);
 	}
@@ -50,6 +79,11 @@ class ProfileForm extends Component {
 							type="text"
 							label="High School"
 							name="highSchool"
+							currentValue={
+								this.props.auth.highSchool
+									? this.props.auth.highSchool
+									: "None"
+							}
 						/>
 					</div>
 					<div className="column is-one-third">
@@ -59,10 +93,10 @@ class ProfileForm extends Component {
 							label="Grad Year"
 							icon={<i className="fas fa-graduation-cap" />}
 							name="highSchoolGradYear"
+							placeholder={2017}
 						/>
 					</div>
 				</div>
-				<br />
 			</div>
 		);
 	}
@@ -88,6 +122,7 @@ class ProfileForm extends Component {
 							label="Grad Year"
 							icon={<i className="fas fa-graduation-cap" />}
 							name="universityGradYear"
+							placeholder={2021}
 						/>
 					</div>
 				</div>
@@ -97,8 +132,7 @@ class ProfileForm extends Component {
 						type="text"
 						label="University"
 						name="universityName"
-						data={this.props.data}
-						currentSchool={
+						currentValue={
 							this.props.auth.university
 								? this.props.auth.university.universityName
 								: "None"
@@ -123,11 +157,12 @@ class ProfileForm extends Component {
 					this.submit(values)
 				)}
 			>
-				{this.renderNameAndCityField()}
+				{this.renderNameField()}
 				{this.renderHighSchoolField()}
-				<div className="notification has-background-grey-lighter is-italic">
-					Leave the university field below as "None" if you're still
-					in high school.
+				{this.renderLocationField()}
+				<div className="notification is-italic ">
+					You may leave the university field below as "None" if you're
+					still in high school.
 					<br />
 					<br />
 					Feel free to fill in your intended major and expected
@@ -145,7 +180,7 @@ class ProfileForm extends Component {
 	render() {
 		return (
 			<div>
-				<div className="notification">
+				<div className="box has-background-white-bis">
 					<p className="title is-3">My Profile</p>
 					{this.renderForm()}
 				</div>
@@ -156,6 +191,22 @@ class ProfileForm extends Component {
 
 function validate(values) {
 	const errors = {};
+	if (!values.givenName) {
+		errors["givenName"] = "Sorry, but no faceless men allowed";
+	}
+	if (!values.city) {
+		errors["city"] = "Anywhere not Chernobyl";
+	}
+	if (!values.highSchoolGradYear) {
+		errors["highSchoolGradYear"] = "This field cannot be left blank";
+	}
+	if (!values.major) {
+		errors["major"] = "This field cannot be left blank";
+	}
+
+	if (!values.country) {
+		errors["country"] = "This field cannot be left blank";
+	}
 
 	return errors;
 }

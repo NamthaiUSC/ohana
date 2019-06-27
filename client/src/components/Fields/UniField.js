@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Select, { createFilter } from "react-select";
 import { FixedSizeList as List } from "react-window";
+import Universities from "../../data/universities";
 
 const height = 35;
 
 class MenuList extends Component {
 	render() {
-		const { options, children, maxHeight, getValue } = this.props;
+		const { options, children, getValue } = this.props;
 		const [value] = getValue();
 		const initialOffset = options.indexOf(value) * height;
 
@@ -36,14 +37,17 @@ export class UniField extends Component {
 
 	render() {
 		const { selectedOption } = this.state;
-		const { data, input, currentSchool, label } = this.props;
+		const { input, currentValue, label } = this.props;
 		return (
 			<div>
 				<label className="subtitle is-5">{label}</label>
 				<Select
 					label="Single select"
 					{...input}
-					options={data}
+					options={Universities.map(university => ({
+						label: university.name,
+						value: university.name
+					}))}
 					value={selectedOption}
 					onChange={value => {
 						this.handleChange();
@@ -54,7 +58,7 @@ export class UniField extends Component {
 					filterOption={createFilter({ ignoreAccents: false })}
 					placeholder={
 						<span>
-							<i className="fas fa-university" /> {currentSchool}
+							<i className="fas fa-university" /> {currentValue}
 						</span>
 					}
 				/>

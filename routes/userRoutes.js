@@ -17,6 +17,7 @@ module.exports = app => {
 		const {
 			id,
 			givenName,
+			country,
 			city,
 			major,
 			highSchool,
@@ -29,7 +30,9 @@ module.exports = app => {
 
 		doc.givenName = givenName;
 		doc.city = city;
+		doc.country = country;
 		doc.major = major;
+		doc.highSchool = highSchool;
 		doc.highSchoolGradYear = highSchoolGradYear;
 		doc.universityGradYear = universityGradYear;
 

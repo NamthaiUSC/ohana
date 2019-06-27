@@ -8,14 +8,12 @@ const userSchema = new Schema({
 	familyName: String,
 	email: String,
 	photoURL: String,
+	country: String,
 	city: String,
 	major: String,
 	highSchoolGradYear: Number,
 	universityGradYear: Number,
-	highSchool: {
-		type: Schema.Types.ObjectId,
-		ref: "highSchools"
-	},
+	highSchool: String,
 	university: {
 		type: Schema.Types.ObjectId,
 		ref: "universities"

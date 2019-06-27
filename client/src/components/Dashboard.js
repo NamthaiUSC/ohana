@@ -19,6 +19,33 @@ export class Dashboard extends Component {
 		}
 	}
 
+	renderMyHighSchool() {
+		if (this.props.auth.highSchool) {
+			return (
+				<li>
+					<span className="icon">
+						<i className="fas fa-school" />
+					</span>{" "}
+					<span>
+						{this.props.auth.highSchool} (
+						{this.props.auth.highSchoolGradYear})
+					</span>
+				</li>
+			);
+		}
+	}
+
+	renderMyLocation() {
+		if (this.props.auth.country && this.props.auth.city) {
+			return (
+				<span>
+					{this.props.auth.city}, {this.props.auth.country}
+				</span>
+			);
+		}
+		return <span>No city and country yet</span>;
+	}
+
 	renderDashBoard() {
 		if (this.props.auth) {
 			const {
@@ -26,6 +53,7 @@ export class Dashboard extends Component {
 				familyName,
 				email,
 				photoURL,
+				country,
 				city,
 				major,
 				highSchoolGradYear,
@@ -55,13 +83,13 @@ export class Dashboard extends Component {
 							<span className="icon ">
 								<i className="fas fa-globe-asia fa-fw" />
 							</span>{" "}
-							<span>{city}</span>
+							{this.renderMyLocation()}
 						</div>
 						<div className=" is-size-6">
 							<span className="icon ">
 								<i className="fas fa-book fa-fw" />
 							</span>{" "}
-							<span>{major}</span>
+							<span>{major ? major : "No major yet"}</span>
 						</div>
 						<div className=" is-size-6">
 							<span className="icon">
@@ -72,15 +100,7 @@ export class Dashboard extends Component {
 						<br />
 						<p className="menu-label">My Schools</p>
 						<ul className="menu-list">
-							<li>
-								<span className="icon">
-									<i className="fas fa-school" />
-								</span>{" "}
-								<span>
-									Ruamrudee International School (
-									{highSchoolGradYear})
-								</span>
-							</li>
+							{this.renderMyHighSchool()}
 							{this.renderMyUni()}
 						</ul>
 						<p className="menu-label">
