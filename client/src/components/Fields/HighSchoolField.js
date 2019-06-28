@@ -4,17 +4,6 @@ import { FixedSizeList as List } from "react-window";
 
 const height = 35;
 
-const options = [
-	{
-		value: "Ruamrudee International School",
-		label: "Ruamrudee International School"
-	},
-	{
-		value: "International School Bangkok",
-		label: "International School Bangkok"
-	}
-];
-
 class MenuList extends Component {
 	render() {
 		const { options, children, getValue } = this.props;
@@ -85,6 +74,7 @@ export class HighSchoolField extends Component {
 			input,
 			currentValue,
 			label,
+			options,
 			meta: { error, touched }
 		} = this.props;
 

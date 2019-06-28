@@ -53,17 +53,14 @@ export class Dashboard extends Component {
 				familyName,
 				email,
 				photoURL,
-				country,
-				city,
 				major,
-				highSchoolGradYear,
 				universityGradYear
 			} = this.props.auth;
 			return (
-				<div className="box ">
+				<div className="box">
 					<aside className="menu">
 						<div className="columns is-vcentered">
-							<div className="column is-two-fifths">
+							<div className="column">
 								<figure className="image is-128x128">
 									<img
 										className="is-rounded"
@@ -72,9 +69,9 @@ export class Dashboard extends Component {
 									/>
 								</figure>
 							</div>
-							<div className="column has-text-centered">
+							<div className="column">
 								<div>
-									<p className="subtitle is-3">{givenName}</p>
+									<p className="subtitle is-4">{givenName}</p>
 									<p className="title is-4">{familyName}</p>
 								</div>
 							</div>

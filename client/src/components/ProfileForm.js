@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { updateInfo } from "../actions";
+import { updateInfo, getAllHighSchools, getAllCities } from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import InfoField from "./Fields/InfoField";
@@ -12,6 +12,8 @@ import CityField from "./Fields/CityField";
 class ProfileForm extends Component {
 	componentDidMount() {
 		this.props.initialize(this.props.initialValues);
+		this.props.getAllHighSchools();
+		this.props.getAllCities();
 	}
 
 	renderNameField() {
@@ -33,6 +35,16 @@ class ProfileForm extends Component {
 	}
 
 	renderLocationField() {
+		const options = [];
+		if (this.props.cities) {
+			this.props.cities.forEach(element => {
+				options.push({
+					value: element.cityName,
+					label: element.cityName
+				});
+			});
+		}
+
 		return (
 			<div>
 				<div className="columns">
@@ -42,7 +54,7 @@ class ProfileForm extends Component {
 							type="text"
 							label="City"
 							name="city"
-							icon={<i className="fas fa-globe-asia fa-fw" />}
+							options={options}
 							currentValue={
 								this.props.auth.city
 									? this.props.auth.city
@@ -70,6 +82,15 @@ class ProfileForm extends Component {
 	}
 
 	renderHighSchoolField() {
+		const options = [];
+		if (this.props.highSchools) {
+			this.props.highSchools.forEach(element => {
+				options.push({
+					value: element.highSchoolName,
+					label: element.highSchoolName
+				});
+			});
+		}
 		return (
 			<div>
 				<div className="columns">
@@ -79,6 +100,7 @@ class ProfileForm extends Component {
 							type="text"
 							label="High School"
 							name="highSchool"
+							options={options}
 							currentValue={
 								this.props.auth.highSchool
 									? this.props.auth.highSchool
@@ -181,7 +203,12 @@ class ProfileForm extends Component {
 		return (
 			<div>
 				<div className="box has-background-white-bis">
-					<p className="title is-3">My Profile</p>
+					<p className="title is-3 has-text-link">
+						My Profile{" "}
+						<span className="icon is-large">
+							<i className="fas fa-user-cog" />
+						</span>
+					</p>
 					{this.renderForm()}
 				</div>
 			</div>
@@ -214,12 +241,16 @@ function validate(values) {
 function mapStateToProps(state) {
 	return {
 		initialValues: state.auth,
-		auth: state.auth
+		auth: state.auth,
+		highSchools: state.highSchools,
+		cities: state.cities
 	};
 }
 
 const mapDispatchToProps = {
-	updateInfo
+	updateInfo,
+	getAllHighSchools,
+	getAllCities
 };
 
 ProfileForm = reduxForm({

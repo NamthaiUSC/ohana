@@ -56,18 +56,33 @@ class Header extends Component {
 		switch (this.props.auth) {
 			case null:
 				return (
-					<div className="button is-link is-outlined is-loading">
-						Logout
-					</div>
+					<div className="button is-link is-loading">Sign out</div>
 				);
 			case false:
 				return (
-					<a
-						className="button is-link is-outlined"
-						href="/auth/google"
-					>
-						<strong>Login with Google</strong>
-					</a>
+					<div className="field has-addons">
+						<p className="control">
+							<a
+								className="button is-link is-outlined has-background-white"
+								href="/auth/google"
+							>
+								<figure className="image is-24x24">
+									<img
+										src="https://developers.google.com/identity/images/g-logo.png"
+										alt="google logo"
+									/>
+								</figure>
+							</a>
+						</p>
+						<p className="control">
+							<a
+								className="button is-link has-text-weight-bold is-normal"
+								href="/auth/google"
+							>
+								Sign in with Google
+							</a>
+						</p>
+					</div>
 				);
 			default:
 				return (
@@ -75,7 +90,7 @@ class Header extends Component {
 						className="button is-link is-outlined"
 						href="/api/logout"
 					>
-						<strong>Logout</strong>
+						<strong>Sign out</strong>
 					</a>
 				);
 		}
@@ -126,10 +141,10 @@ class Header extends Component {
 				<div className="navbar-item" />
 				<div id="navbarBasicExample" className="navbar-menu">
 					<div className="navbar-start">
-						<div className="navbar-item">
+						<div className="navbar-item is-tab">
 							<Link
 								to={this.props.auth ? "/home" : "/"}
-								className=" title is-5 is-tab has-text-link"
+								className=" title is-5 has-text-link"
 							>
 								Home
 							</Link>

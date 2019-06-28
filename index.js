@@ -4,23 +4,20 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
+
 require("./models/User");
 require("./models/HighSchool");
 require("./models/University");
+require("./models/City");
 require("./services/passport");
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const universityRoutes = require("./routes/universityRoutes");
+const highSchoolRoutes = require("./routes/highSchoolRoutes");
+const cityRoutes = require("./routes/cityRoutes");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
-
-// notifies if you're connected to MongoDB Atlas
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "Connection error: "));
-db.once("open", function() {
-	console.log("Connected to MongoDB");
-});
 
 const app = express();
 
@@ -38,6 +35,8 @@ app.use(passport.session());
 authRoutes(app);
 userRoutes(app);
 universityRoutes(app);
+highSchoolRoutes(app);
+cityRoutes(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

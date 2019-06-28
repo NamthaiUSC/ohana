@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-const User = mongoose.model("users");
-const HighSchool = mongoose.model("highSchools");
 const University = mongoose.model("universities");
 
 module.exports = app => {

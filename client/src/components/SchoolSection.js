@@ -28,7 +28,7 @@ export class SchoolSection extends Component {
 				let studentsList = [];
 				console.log(studentsAttending);
 				let count = 0;
-				studentsAttending.map(student => {
+				studentsAttending.forEach(student => {
 					studentsList.push(
 						<div className="column is-one-fifth">
 							<ProfileBox
@@ -90,7 +90,7 @@ export class SchoolSection extends Component {
 
 					let studentsList = [];
 					let count = 0;
-					studentsAttending.map(student => {
+					studentsAttending.forEach(student => {
 						//only add students from the same high school
 						if (student.highSchool === this.props.auth.highSchool) {
 							studentsList.push(
@@ -169,7 +169,7 @@ export class SchoolSection extends Component {
 
 					let studentsList = [];
 					let count = 0;
-					studentsAttending.map(student => {
+					studentsAttending.forEach(student => {
 						//only add students in the same city
 						if (student.city === this.props.auth.city) {
 							studentsList.push(
