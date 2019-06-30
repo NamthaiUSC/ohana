@@ -28,7 +28,8 @@ class MenuList extends Component {
 export class CityField extends Component {
 	state = {
 		selectedOption: null,
-		whichField: "find"
+		whichField: "find",
+		showInfo: false
 	};
 
 	handleChange = selectedOption => {
@@ -68,6 +69,34 @@ export class CityField extends Component {
 		}
 	}
 
+	renderInfoIcon() {
+		return (
+			<span
+				onMouseEnter={() => this.setState({ showInfo: true })}
+				onMouseLeave={() => this.setState({ showInfo: false })}
+			>
+				<span className="icon is-small has-text-grey-light">
+					<i className="fas fa-info-circle" />
+				</span>
+			</span>
+		);
+	}
+
+	displayInfo() {
+		if (this.state.showInfo) {
+			return (
+				<div className="is-italic has-text-info">
+					City/town that you grew up in
+				</div>
+			);
+		}
+		return (
+			<div className="is-italic has-text-white-bis">
+				City/townthat you grew up in
+			</div>
+		);
+	}
+
 	render() {
 		const { selectedOption, whichField } = this.state;
 		const {
@@ -83,6 +112,7 @@ export class CityField extends Component {
 				<div>
 					<label className="subtitle is-5">{label}</label>
 					{this.renderAddButton()}
+					{this.renderInfoIcon()}
 					<Select
 						label="Single select"
 						{...input}
@@ -102,7 +132,10 @@ export class CityField extends Component {
 							</span>
 						}
 					/>
-					<div className="has-text-danger">{touched && error}</div>
+					{this.displayInfo()}
+					<div className="has-text-danger is-italic">
+						{touched && error}
+					</div>
 				</div>
 			);
 		} else if (whichField === "add") {
@@ -120,7 +153,9 @@ export class CityField extends Component {
 							<i className="fas fa-globe-asia" />
 						</span>
 					</p>
-					<div className="has-text-danger">{touched && error}</div>
+					<div className="has-text-danger is-italic">
+						{touched && error}
+					</div>
 				</div>
 			);
 		}

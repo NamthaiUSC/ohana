@@ -101,7 +101,9 @@ export class HighSchoolField extends Component {
 							</span>
 						}
 					/>
-					<div className="has-text-danger">{touched && error}</div>
+					<div className="has-text-danger is-italic">
+						{touched && error}
+					</div>
 				</div>
 			);
 		} else if (whichField === "add") {
@@ -119,7 +121,9 @@ export class HighSchoolField extends Component {
 							<i className="fas fa-school" />
 						</span>
 					</p>
-					<div className="has-text-danger">{touched && error}</div>
+					<div className="has-text-danger is-italic">
+						{touched && error}
+					</div>
 				</div>
 			);
 		}

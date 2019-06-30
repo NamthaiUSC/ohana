@@ -6,8 +6,8 @@ const University = mongoose.model("universities");
 const City = mongoose.model("cities");
 
 module.exports = app => {
-	app.get("/api/get_user/:selfID", async (req, res) => {
-		await User.findById(req.params.selfID)
+	app.get("/api/get_user/:id", async (req, res) => {
+		await User.findById(req.params.id)
 			.populate("university")
 			.exec((err, user) => {
 				res.send(user);

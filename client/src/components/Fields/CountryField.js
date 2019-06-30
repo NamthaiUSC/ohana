@@ -63,11 +63,13 @@ export class CountryField extends Component {
 					filterOption={createFilter({ ignoreAccents: false })}
 					placeholder={
 						<span>
-							<i className="fas fa-globe-asia" /> {currentValue}
+							<i className="fas fa-flag" /> {currentValue}
 						</span>
 					}
 				/>
-				<div className="has-text-danger">{touched && error}</div>
+				<div className="has-text-danger is-italic">
+					{touched && error}
+				</div>
 			</div>
 		);
 	}

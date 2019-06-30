@@ -14,7 +14,7 @@ export default ({
 				<input className="input" {...input} placeholder={placeholder} />
 				<span className="icon is-small is-right">{icon}</span>
 			</p>
-			<div className="has-text-danger">{touched && error}</div>
+			<div className="has-text-danger is-italic">{touched && error}</div>
 		</div>
 	);
 };

@@ -1,5 +1,11 @@
 import axios from "axios";
-import { FETCH_USER, GET_UNI, GET_ALL_HS, GET_ALL_CITY } from "./types";
+import {
+	FETCH_USER,
+	GET_UNI,
+	GET_ALL_HS,
+	GET_ALL_CITY,
+	GET_STUDENT
+} from "./types";
 
 export const fetchUser = () => async dispatch => {
 	const user = await axios.get("/api/current_user");
@@ -17,6 +23,12 @@ export const updateInfo = (values, history) => async dispatch => {
 export const getUser = selfID => async dispatch => {
 	const res = await axios.get("/api/get_user/" + selfID);
 	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const getStudent = id => async dispatch => {
+	const res = await axios.get("/api/get_user/" + id);
+	console.log(res.data);
+	dispatch({ type: GET_STUDENT, payload: res.data });
 };
 
 export const getUni = universityName => async dispatch => {

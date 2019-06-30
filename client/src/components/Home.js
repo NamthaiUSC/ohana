@@ -20,7 +20,7 @@ export class Home extends Component {
 					<div className="column is-one-fifth ">
 						<Dashboard />
 					</div>
-					<div className="column ">
+					<div className="column is-three-fifths">
 						<SchoolSection />
 					</div>
 					<div className="column is-one-fifth">

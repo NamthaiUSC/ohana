@@ -26,7 +26,7 @@ class ProfileForm extends Component {
 							type="text"
 							label="Display Name"
 							name="givenName"
-							placeholder="Jon"
+							placeholder="Lilo"
 						/>
 					</div>
 				</div>
@@ -134,7 +134,7 @@ class ProfileForm extends Component {
 							label="Major"
 							name="major"
 							icon={<i className="fas fa-book fa-fw" />}
-							placeholder="Computer Science"
+							placeholder="Basket Weaving"
 						/>
 					</div>
 					<div className="column is-one-third">
@@ -222,17 +222,22 @@ function validate(values) {
 		errors["givenName"] = "Sorry, but no faceless men allowed";
 	}
 	if (!values.city) {
-		errors["city"] = "Anywhere not Chernobyl";
+		errors["city"] = "Required field";
+	}
+	if (!values.country) {
+		errors["country"] = "Required field";
+	}
+	if (!values.highSchool) {
+		errors["highSchool"] = "Required field";
 	}
 	if (!values.highSchoolGradYear) {
-		errors["highSchoolGradYear"] = "This field cannot be left blank";
+		errors["highSchoolGradYear"] = "Required field";
 	}
 	if (!values.major) {
-		errors["major"] = "This field cannot be left blank";
+		errors["major"] = "Required field";
 	}
-
-	if (!values.country) {
-		errors["country"] = "This field cannot be left blank";
+	if (!values.universityGradYear) {
+		errors["universityGradYear"] = "Required field";
 	}
 
 	return errors;

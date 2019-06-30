@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProfileBox from "./ProfileBox";
 import { connect } from "react-redux";
+import Grid from "./Grid";
 
 export class SchoolSection extends Component {
 	createStudentListGeneral() {
@@ -26,15 +27,15 @@ export class SchoolSection extends Component {
 				const { studentsAttending } = this.props.uni;
 
 				let studentsList = [];
-				console.log(studentsAttending);
 				let count = 0;
 				studentsAttending.forEach(student => {
 					studentsList.push(
-						<div className="column is-one-fifth">
+						<div className="column is-one-quarter" key={count}>
 							<ProfileBox
 								key={count}
 								id={student._id}
 								givenName={student.givenName}
+								familyName={student.familyName}
 								photoURL={student.photoURL}
 								major={student.major}
 								highSchoolGradYear={student.highSchoolGradYear}
@@ -59,7 +60,32 @@ export class SchoolSection extends Component {
 							</div>
 						</div>
 					);
-				} else return <div className="columns">{studentsList}</div>;
+				}
+
+				const columns = 4;
+				const studentGrid = [];
+				//creating a grid to display students
+				for (var i = 0; i < studentsList.length; i += columns) {
+					const studentRow = [];
+
+					//fill up each row until all columns have been filled
+					for (var j = 0; j < columns; j++) {
+						if (i + j >= studentsList.length) {
+							break;
+						}
+						studentRow.push(studentsList[i + j]);
+					}
+
+					studentGrid.push(
+						<div className="columns">{studentRow}</div>
+					);
+				}
+
+				return (
+					<div>
+						<Grid itemsArray={studentGrid} />
+					</div>
+				);
 		}
 	}
 
@@ -94,11 +120,15 @@ export class SchoolSection extends Component {
 						//only add students from the same high school
 						if (student.highSchool === this.props.auth.highSchool) {
 							studentsList.push(
-								<div className="column is-one-fifth">
+								<div
+									className="column is-one-quarter"
+									key={count}
+								>
 									<ProfileBox
 										key={count}
 										id={student._id}
 										givenName={student.givenName}
+										familyName={student.familyName}
 										photoURL={student.photoURL}
 										major={student.major}
 										highSchoolGradYear={
@@ -127,17 +157,41 @@ export class SchoolSection extends Component {
 								</div>
 							</div>
 						);
-					} else return <div className="columns">{studentsList}</div>;
+					}
+					const columns = 4;
+					const studentGrid = [];
+					//creating a grid to display students
+					for (var i = 0; i < studentsList.length; i += columns) {
+						const studentRow = [];
+
+						//fill up each row until all columns have been filled
+						for (var j = 0; j < columns; j++) {
+							if (i + j >= studentsList.length) {
+								break;
+							}
+							studentRow.push(studentsList[i + j]);
+						}
+
+						studentGrid.push(
+							<div className="columns">{studentRow}</div>
+						);
+					}
+
+					return (
+						<div>
+							<Grid itemsArray={studentGrid} />
+						</div>
+					);
 			}
 		} else {
 			return (
-				<div className="notification is-warning has-text-weight-bold">
+				<div className="notification is-warning has-text-weight-bold is-italic">
 					Press the{" "}
 					<span className="icon has-text-link">
 						<i className="fas fa-user-cog" />
 					</span>{" "}
 					button at the top right hand corner to add your high school
-					and start finding people!
+					and start searching!
 				</div>
 			);
 		}
@@ -173,11 +227,15 @@ export class SchoolSection extends Component {
 						//only add students in the same city
 						if (student.city === this.props.auth.city) {
 							studentsList.push(
-								<div className="column is-one-fifth">
+								<div
+									className="column is-one-quarter"
+									key={count}
+								>
 									<ProfileBox
 										key={count}
 										id={student._id}
 										givenName={student.givenName}
+										familyName={student.familyName}
 										photoURL={student.photoURL}
 										major={student.major}
 										highSchoolGradYear={
@@ -186,6 +244,7 @@ export class SchoolSection extends Component {
 									/>
 								</div>
 							);
+
 							count++;
 						}
 					});
@@ -205,16 +264,41 @@ export class SchoolSection extends Component {
 								</div>
 							</div>
 						);
-					} else return <div className="columns">{studentsList}</div>;
+					}
+
+					const columns = 4;
+					const studentGrid = [];
+					//creating a grid to display students
+					for (var i = 0; i < studentsList.length; i += columns) {
+						const studentRow = [];
+
+						//fill up each row until all columns have been filled
+						for (var j = 0; j < columns; j++) {
+							if (i + j >= studentsList.length) {
+								break;
+							}
+							studentRow.push(studentsList[i + j]);
+						}
+
+						studentGrid.push(
+							<div className="columns">{studentRow}</div>
+						);
+					}
+
+					return (
+						<div>
+							<Grid itemsArray={studentGrid} />
+						</div>
+					);
 			}
 		} else {
 			return (
-				<div className="notification is-warning has-text-weight-bold">
+				<div className="notification is-warning has-text-weight-bold is-italic">
 					Press the{" "}
 					<span className="icon has-text-link">
 						<i className="fas fa-user-cog" />
 					</span>{" "}
-					button on the top right hand corner to add your city and
+					button at the top right hand corner to add your city and
 					start searching!
 				</div>
 			);
@@ -222,7 +306,6 @@ export class SchoolSection extends Component {
 	}
 
 	renderSchoolInfo() {
-		console.log(this.props);
 		switch (this.props.uni) {
 			case false:
 				return (
@@ -325,14 +408,6 @@ export class SchoolSection extends Component {
 				</div>
 				<br />
 				{this.createStudentListGeneral()}
-				<div className="columns">
-					<div className="column is-one-fifth">
-						<ProfileBox />
-					</div>
-					<div className="column is-one-fifth">
-						<ProfileBox />
-					</div>
-				</div>
 			</div>
 		);
 	}

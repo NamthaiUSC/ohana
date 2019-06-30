@@ -38,9 +38,14 @@ export class Dashboard extends Component {
 	renderMyLocation() {
 		if (this.props.auth.country && this.props.auth.city) {
 			return (
-				<span>
-					{this.props.auth.city}, {this.props.auth.country}
-				</span>
+				<div>
+					<span className="icon">
+						<i className="fas fa-globe-asia fa-fw" />
+					</span>{" "}
+					<span>
+						{this.props.auth.city}, {this.props.auth.country}
+					</span>
+				</div>
 			);
 		}
 		return <span>No city and country yet</span>;
@@ -77,9 +82,6 @@ export class Dashboard extends Component {
 							</div>
 						</div>
 						<div className=" is-size-6">
-							<span className="icon ">
-								<i className="fas fa-globe-asia fa-fw" />
-							</span>{" "}
 							{this.renderMyLocation()}
 						</div>
 						<div className=" is-size-6">
