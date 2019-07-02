@@ -105,7 +105,7 @@ class Header extends Component {
 			default:
 				return (
 					<button
-						className="button is-pulled-right is-link is-outlined"
+						className="button is-pulled-right is-link is-inverted"
 						onClick={() => {
 							this.setState({ whichModal: "EditInfo" });
 						}}
@@ -121,7 +121,7 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar has-shadow has-background-white-bis"
+				className="navbar box is-paddingless  is-fixed-top"
 				role="navigation"
 				aria-label="main navigation"
 			>

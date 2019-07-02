@@ -3,305 +3,147 @@ import ProfileBox from "./ProfileBox";
 import { connect } from "react-redux";
 import Grid from "./Grid";
 
+const columns = 4;
+
 export class SchoolSection extends Component {
-	createStudentListGeneral() {
-		switch (this.props.uni) {
-			case null:
-				return <div className="notification">Search to start!</div>;
-			case false:
-				return (
-					<div className="notification">
-						<span>
-							Sorry, we couldn't find any students attending this
-							university at this time
-						</span>{" "}
-						<span>
-							<i className="far fa-frown" />
-						</span>{" "}
-						<div>
-							Be sure to check back later as more students join!
-						</div>
+	//message shown when university not found in database i.e. no one on this platform goes there yet
+	noUniFoundMessage() {
+		return (
+			<div className="notification">
+				<span>
+					Sorry, we couldn't find any students attending this
+					university at this time
+				</span>{" "}
+				<span>
+					<i className="far fa-frown" />
+				</span>{" "}
+				<div>Be sure to check back later as more students join!</div>
+			</div>
+		);
+	}
+
+	//message shown when user has not compeleted their informaiton section
+	missingUserInfoMessage() {
+		return (
+			<div className="notification is-warning has-text-weight-bold is-italic">
+				Press the{" "}
+				<span className="icon has-text-link">
+					<i className="fas fa-user-cog" />
+				</span>{" "}
+				button at the top right hand corner to add your high school and
+				start searching!
+			</div>
+		);
+	}
+
+	//message shown before user has search any univeristy
+	preSearchMessage() {
+		return <div className="notification is-size-6">Search to start!</div>;
+	}
+
+	//message shown when no match to shared background filter e.g. no one attending this schooll from the same city
+	emptyMatchMessage(sharedBackground) {
+		return (
+			<div className="notification">
+				<span>
+					Sorry, we couldn't find any students from <span> </span>
+					{sharedBackground} at this time
+				</span>{" "}
+				<span>
+					<i className="far fa-frown" />
+				</span>{" "}
+				<div>Be sure to check back later as more students join!</div>
+			</div>
+		);
+	}
+
+	//creates an array of students based on category (highschool or city or general)
+	createStudentList(category) {
+		if (this.props.uni) {
+			const { studentsAttending } = this.props.uni;
+
+			let studentsListHighSchool = [];
+			let studentsListCity = [];
+			let studentsListGeneral = [];
+			let count = 0;
+			studentsAttending.forEach(student => {
+				const studentBox = (
+					<div className="column is-one-quarter" key={count}>
+						<ProfileBox
+							key={count}
+							id={student._id}
+							givenName={student.givenName}
+							familyName={student.familyName}
+							photoURL={student.photoURL}
+							major={student.major}
+							highSchoolGradYear={student.highSchoolGradYear}
+						/>
 					</div>
 				);
-			default:
-				const { studentsAttending } = this.props.uni;
 
-				let studentsList = [];
-				let count = 0;
-				studentsAttending.forEach(student => {
-					studentsList.push(
-						<div className="column is-one-quarter" key={count}>
-							<ProfileBox
-								key={count}
-								id={student._id}
-								givenName={student.givenName}
-								familyName={student.familyName}
-								photoURL={student.photoURL}
-								major={student.major}
-								highSchoolGradYear={student.highSchoolGradYear}
-							/>
-						</div>
-					);
-					count++;
-				});
-				if (studentsList.length === 0) {
-					return (
-						<div className="notification">
-							<span>
-								Sorry, we couldn't find any students attending
-								this university at this time
-							</span>{" "}
-							<span>
-								<i className="far fa-frown" />
-							</span>{" "}
-							<div>
-								Be sure to check back later as more students
-								join!
-							</div>
-						</div>
-					);
+				if (student.highSchool === this.props.auth.highSchool) {
+					studentsListHighSchool.push(studentBox);
+				} else if (student.city === this.props.auth.city) {
+					studentsListCity.push(studentBox);
+				} else {
+					studentsListGeneral.push(studentBox);
 				}
+				count++;
+			});
 
-				const columns = 4;
-				const studentGrid = [];
-				//creating a grid to display students
-				for (var i = 0; i < studentsList.length; i += columns) {
-					const studentRow = [];
-
-					//fill up each row until all columns have been filled
-					for (var j = 0; j < columns; j++) {
-						if (i + j >= studentsList.length) {
-							break;
-						}
-						studentRow.push(studentsList[i + j]);
-					}
-
-					studentGrid.push(
-						<div className="columns">{studentRow}</div>
-					);
-				}
-
-				return (
-					<div>
-						<Grid itemsArray={studentGrid} />
-					</div>
-				);
+			switch (category) {
+				case "HighSchool":
+					return studentsListHighSchool;
+				case "City":
+					return studentsListCity;
+				default:
+					return studentsListGeneral;
+			}
 		}
 	}
 
-	createStudentListHighSchool() {
-		if (this.props.auth.highSchool) {
-			switch (this.props.uni) {
-				case null:
-					return <div className="notification">Search to start!</div>;
-				case false:
-					return (
-						<div className="notification">
-							<span>
-								Sorry, we couldn't find any students that also
-								attended {this.props.auth.highSchool} at this
-								time
-							</span>{" "}
-							<span>
-								<i className="far fa-frown" />
-							</span>{" "}
-							<div>
-								Be sure to check back later as more students
-								join!
-							</div>
-						</div>
-					);
-				default:
-					const { studentsAttending } = this.props.uni;
+	//turns an array into a react window grid with col columns
+	createStudentGrid(studentsList, col) {
+		const studentGrid = [];
+		//creating a grid to display students
+		for (var i = 0; i < studentsList.length; i += col) {
+			const studentRow = [];
 
-					let studentsList = [];
-					let count = 0;
-					studentsAttending.forEach(student => {
-						//only add students from the same high school
-						if (student.highSchool === this.props.auth.highSchool) {
-							studentsList.push(
-								<div
-									className="column is-one-quarter"
-									key={count}
-								>
-									<ProfileBox
-										key={count}
-										id={student._id}
-										givenName={student.givenName}
-										familyName={student.familyName}
-										photoURL={student.photoURL}
-										major={student.major}
-										highSchoolGradYear={
-											student.highSchoolGradYear
-										}
-									/>
-								</div>
-							);
-							count++;
-						}
-					});
-					if (studentsList.length === 0) {
-						return (
-							<div className="notification">
-								<span>
-									Sorry, we couldn't find any students that
-									also attended {this.props.auth.highSchool}{" "}
-									at this time
-								</span>{" "}
-								<span>
-									<i className="far fa-frown" />
-								</span>{" "}
-								<div>
-									Be sure to check back later as more students
-									join!
-								</div>
-							</div>
-						);
-					}
-					const columns = 4;
-					const studentGrid = [];
-					//creating a grid to display students
-					for (var i = 0; i < studentsList.length; i += columns) {
-						const studentRow = [];
-
-						//fill up each row until all columns have been filled
-						for (var j = 0; j < columns; j++) {
-							if (i + j >= studentsList.length) {
-								break;
-							}
-							studentRow.push(studentsList[i + j]);
-						}
-
-						studentGrid.push(
-							<div className="columns">{studentRow}</div>
-						);
-					}
-
-					return (
-						<div>
-							<Grid itemsArray={studentGrid} />
-						</div>
-					);
+			//fill up each row until all columns have been filled
+			for (var j = 0; j < col; j++) {
+				if (i + j >= studentsList.length) {
+					break;
+				}
+				studentRow.push(studentsList[i + j]);
 			}
-		} else {
-			return (
-				<div className="notification is-warning has-text-weight-bold is-italic">
-					Press the{" "}
-					<span className="icon has-text-link">
-						<i className="fas fa-user-cog" />
-					</span>{" "}
-					button at the top right hand corner to add your high school
-					and start searching!
-				</div>
-			);
+
+			studentGrid.push(<div className="columns">{studentRow}</div>);
 		}
+
+		return (
+			<div>
+				<Grid itemsArray={studentGrid} />
+			</div>
+		);
 	}
 
-	createStudentListCity() {
-		if (this.props.auth.city) {
+	//manages the student result area
+	createStudentWindow(categoryName, categoryValue) {
+		if (categoryValue) {
 			switch (this.props.uni) {
 				case null:
-					return <div className="notification">Search to start!</div>;
+					return this.preSearchMessage();
 				case false:
-					return (
-						<div className="notification">
-							<span>
-								Sorry, we couldn't find any students from{" "}
-								{this.props.auth.city} at this time
-							</span>{" "}
-							<span>
-								<i className="far fa-frown" />
-							</span>{" "}
-							<div>
-								Be sure to check back later as more students
-								join!
-							</div>
-						</div>
-					);
+					return this.noUniFoundMessage();
 				default:
-					const { studentsAttending } = this.props.uni;
-
-					let studentsList = [];
-					let count = 0;
-					studentsAttending.forEach(student => {
-						//only add students in the same city
-						if (student.city === this.props.auth.city) {
-							studentsList.push(
-								<div
-									className="column is-one-quarter"
-									key={count}
-								>
-									<ProfileBox
-										key={count}
-										id={student._id}
-										givenName={student.givenName}
-										familyName={student.familyName}
-										photoURL={student.photoURL}
-										major={student.major}
-										highSchoolGradYear={
-											student.highSchoolGradYear
-										}
-									/>
-								</div>
-							);
-
-							count++;
-						}
-					});
+					let studentsList = this.createStudentList(categoryName);
 					if (studentsList.length === 0) {
-						return (
-							<div className="notification">
-								<span>
-									Sorry, we couldn't find any students from{" "}
-									{this.props.auth.city} at this time
-								</span>{" "}
-								<span>
-									<i className="far fa-frown" />
-								</span>{" "}
-								<div>
-									Be sure to check back later as more students
-									join!
-								</div>
-							</div>
-						);
+						return this.emptyMatchMessage(categoryValue);
 					}
-
-					const columns = 4;
-					const studentGrid = [];
-					//creating a grid to display students
-					for (var i = 0; i < studentsList.length; i += columns) {
-						const studentRow = [];
-
-						//fill up each row until all columns have been filled
-						for (var j = 0; j < columns; j++) {
-							if (i + j >= studentsList.length) {
-								break;
-							}
-							studentRow.push(studentsList[i + j]);
-						}
-
-						studentGrid.push(
-							<div className="columns">{studentRow}</div>
-						);
-					}
-
-					return (
-						<div>
-							<Grid itemsArray={studentGrid} />
-						</div>
-					);
+					return this.createStudentGrid(studentsList, columns);
 			}
 		} else {
-			return (
-				<div className="notification is-warning has-text-weight-bold is-italic">
-					Press the{" "}
-					<span className="icon has-text-link">
-						<i className="fas fa-user-cog" />
-					</span>{" "}
-					button at the top right hand corner to add your city and
-					start searching!
-				</div>
-			);
+			return this.missingUserInfoMessage();
 		}
 	}
 
@@ -365,7 +207,10 @@ export class SchoolSection extends Component {
 					</span>
 				</div>
 				<br />
-				{this.createStudentListHighSchool()}
+				{this.createStudentWindow(
+					"HighSchool",
+					this.props.auth.highSchool
+				)}
 			</div>
 		);
 	}
@@ -385,7 +230,7 @@ export class SchoolSection extends Component {
 					</span>
 				</div>
 				<br />
-				{this.createStudentListCity()}
+				{this.createStudentWindow("City", this.props.auth.city)}
 			</div>
 		);
 	}
@@ -407,7 +252,12 @@ export class SchoolSection extends Component {
 					</span>
 				</div>
 				<br />
-				{this.createStudentListGeneral()}
+				{this.createStudentWindow(
+					"General",
+					this.props.uni
+						? this.props.uni.universityName
+						: "this university"
+				)}
 			</div>
 		);
 	}
@@ -416,6 +266,7 @@ export class SchoolSection extends Component {
 		if (this.props.auth) {
 			return (
 				<div>
+					<br />
 					<div>{this.renderSchoolInfo()}</div>
 					<br />
 					<div>{this.renderHighSchoolLevel()}</div>
@@ -426,7 +277,16 @@ export class SchoolSection extends Component {
 				</div>
 			);
 		}
-		return <div />;
+		return (
+			<div className="has-text-centered">
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
+			</div>
+		);
 	}
 }
 function mapStateToProps(state) {

@@ -15,7 +15,6 @@ export class Home extends Component {
 	renderHome() {
 		return (
 			<div>
-				<br />
 				<div className="columns">
 					<div className="column is-one-fifth ">
 						<Dashboard />

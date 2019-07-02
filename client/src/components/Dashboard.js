@@ -62,7 +62,7 @@ export class Dashboard extends Component {
 				universityGradYear
 			} = this.props.auth;
 			return (
-				<div className="box">
+				<div className="box has-background-white-bis">
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column">

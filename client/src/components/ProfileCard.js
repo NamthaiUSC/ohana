@@ -81,21 +81,27 @@ export class ProfileCard extends Component {
 				</div>
 			);
 		}
-
-		return (
-			<div className="notification is-italic">
-				Click on users to display their information here
-			</div>
-		);
+		if (this.props.auth) {
+			return (
+				<div className="notification is-italic">
+					Click on users to display their information here
+				</div>
+			);
+		}
 	}
 
 	render() {
-		return <div>{this.renderProfileCard()}</div>;
+		return (
+			<div>
+				<br />
+				{this.renderProfileCard()}
+			</div>
+		);
 	}
 }
 
-function mapStateToProps({ student }) {
-	return { student };
+function mapStateToProps({ student, auth }) {
+	return { student, auth };
 }
 
 const mapDispatchToProps = {};
