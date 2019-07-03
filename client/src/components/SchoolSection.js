@@ -1,27 +1,13 @@
 import React, { Component } from "react";
 import ProfileBox from "./ProfileBox";
 import { connect } from "react-redux";
+import { addToApplying, deleteFromApplying } from "../actions";
+
 import Grid from "./Grid";
 
 const columns = 4;
 
 export class SchoolSection extends Component {
-	//message shown when university not found in database i.e. no one on this platform goes there yet
-	noUniFoundMessage() {
-		return (
-			<div className="notification">
-				<span>
-					Sorry, we couldn't find any students attending this
-					university at this time
-				</span>{" "}
-				<span>
-					<i className="far fa-frown" />
-				</span>{" "}
-				<div>Be sure to check back later as more students join!</div>
-			</div>
-		);
-	}
-
 	//message shown when user has not compeleted their informaiton section
 	missingUserInfoMessage() {
 		return (
@@ -30,8 +16,8 @@ export class SchoolSection extends Component {
 				<span className="icon has-text-link">
 					<i className="fas fa-user-cog" />
 				</span>{" "}
-				button at the top right hand corner to add your high school and
-				start searching!
+				edit profile button at the top right hand corner to update your
+				info and start searching!
 			</div>
 		);
 	}
@@ -46,7 +32,8 @@ export class SchoolSection extends Component {
 		return (
 			<div className="notification">
 				<span>
-					Sorry, we couldn't find any students from <span> </span>
+					Sorry, we couldn't find any other students from{" "}
+					<span> </span>
 					{sharedBackground} at this time
 				</span>{" "}
 				<span>
@@ -133,8 +120,6 @@ export class SchoolSection extends Component {
 			switch (this.props.uni) {
 				case null:
 					return this.preSearchMessage();
-				case false:
-					return this.noUniFoundMessage();
 				default:
 					let studentsList = this.createStudentList(categoryName);
 					if (studentsList.length === 0) {
@@ -147,21 +132,47 @@ export class SchoolSection extends Component {
 		}
 	}
 
+	//renders a button to add or delete a uni to/from application list
+	AddOrRemoveFromApplyingButton() {
+		const { auth, uni } = this.props;
+
+		const schoolsApplying = auth.universitiesApplying;
+
+		const uniAlreadyInList = schoolsApplying.find(
+			element => element.universityName === uni.universityName
+		);
+
+		if (uniAlreadyInList) {
+			return (
+				<div
+					className="button is-warning"
+					onClick={() =>
+						this.props.deleteFromApplying(auth._id, uni._id)
+					}
+				>
+					<span className="icon ">
+						<i className="fas fa-minus" />
+					</span>{" "}
+					<strong>Remove from my Applications</strong>
+				</div>
+			);
+		}
+
+		return (
+			<div
+				className="button is-danger"
+				onClick={() => this.props.addToApplying(auth._id, uni._id)}
+			>
+				<span className="icon ">
+					<i className="fas fa-plus" />
+				</span>{" "}
+				<strong>Add to my Applications</strong>
+			</div>
+		);
+	}
+
 	renderSchoolInfo() {
 		switch (this.props.uni) {
-			case false:
-				return (
-					<div>
-						<div className="columns">
-							<div className="column ">
-								<div className="title is-2 has-text-danger">
-									Sorry, it looks like no one on this platform
-									has gone to this university just yet.
-								</div>
-							</div>
-						</div>
-					</div>
-				);
 			case null:
 				return (
 					<div>
@@ -183,6 +194,9 @@ export class SchoolSection extends Component {
 							<span className="title is-2 has-text-danger">
 								{universityName}
 							</span>
+							<div className="is-pulled-right">
+								{this.AddOrRemoveFromApplyingButton()}
+							</div>
 						</div>
 					</div>
 				);
@@ -263,32 +277,21 @@ export class SchoolSection extends Component {
 	}
 
 	render() {
-		if (this.props.auth) {
-			return (
-				<div>
-					<br />
-					<div>{this.renderSchoolInfo()}</div>
-					<br />
-					<div>{this.renderHighSchoolLevel()}</div>
-					<br />
-					<div>{this.renderCityLevel()}</div>
-					<br />
-					<div>{this.renderGeneralLevel()}</div>
-				</div>
-			);
-		}
 		return (
-			<div className="has-text-centered">
+			<div>
 				<br />
+				<div>{this.renderSchoolInfo()}</div>
 				<br />
+				<div>{this.renderHighSchoolLevel()}</div>
 				<br />
+				<div>{this.renderCityLevel()}</div>
 				<br />
-				<br />
-				<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
+				<div>{this.renderGeneralLevel()}</div>
 			</div>
 		);
 	}
 }
+
 function mapStateToProps(state) {
 	return {
 		auth: state.auth,
@@ -296,7 +299,7 @@ function mapStateToProps(state) {
 	};
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { addToApplying, deleteFromApplying };
 
 export default connect(
 	mapStateToProps,

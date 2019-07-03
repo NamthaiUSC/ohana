@@ -105,14 +105,15 @@ class Header extends Component {
 			default:
 				return (
 					<button
-						className="button is-pulled-right is-link is-inverted"
+						className="button is-link"
 						onClick={() => {
 							this.setState({ whichModal: "EditInfo" });
 						}}
 					>
 						<span className="icon">
 							<i className="fas fa-user-cog" />
-						</span>
+						</span>{" "}
+						<strong>Edit Profile</strong>
 					</button>
 				);
 		}

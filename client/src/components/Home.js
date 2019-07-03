@@ -9,23 +9,36 @@ import ProfileCard from "./ProfileCard";
 export class Home extends Component {
 	componentDidMount() {
 		this.props.fetchUser();
-		//this.props.getUser(this.props.match.params.selfID);
 	}
 
 	renderHome() {
-		return (
-			<div>
-				<div className="columns">
-					<div className="column is-one-fifth ">
-						<Dashboard />
+		if (this.props.auth) {
+			return (
+				<div className="">
+					<div className="columns">
+						<div className="column is-one-fifth ">
+							<Dashboard />
+						</div>
+						<div className="column is-three-fifths">
+							<SchoolSection />
+						</div>
+						<div className="column is-one-fifth">
+							<ProfileCard />
+						</div>
 					</div>
-					<div className="column is-three-fifths">
-						<SchoolSection />
-					</div>
-					<div className="column is-one-fifth">
-						<ProfileCard />
-					</div>
+					<br />
 				</div>
+			);
+		}
+
+		return (
+			<div className="has-text-centered">
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
 			</div>
 		);
 	}

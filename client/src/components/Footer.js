@@ -4,13 +4,12 @@ export class Footer extends Component {
 	render() {
 		return (
 			<div>
-				<br />
 				<footer className="footer">
 					<div className="content has-text-centered is-size-7">
 						<div>
 							<span className="icon">
 								<i className="far fa-copyright" />
-							</span>{" "}
+							</span>
 							2019 Nam Thai Hoang
 						</div>
 						<div>Contact: namthaih@usc.edu</div>

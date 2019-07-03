@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { getUni } from "../actions";
 
 export class Dashboard extends Component {
 	renderMyUni() {
@@ -48,7 +48,28 @@ export class Dashboard extends Component {
 				</div>
 			);
 		}
-		return <span>No city and country yet</span>;
+		return (
+			<div>
+				<span className="icon">
+					<i className="fas fa-globe-asia fa-fw" />
+				</span>{" "}
+				<span>No city and country yet</span>
+			</div>
+		);
+	}
+
+	createUniversityList() {
+		let universityList = [];
+
+		this.props.auth.universitiesApplying.forEach(element => {
+			universityList.push(
+				<li onClick={() => this.props.getUni(element.universityName)}>
+					<a>{element.universityName}</a>
+				</li>
+			);
+		});
+
+		return <ul>{universityList}</ul>;
 	}
 
 	renderDashBoard() {
@@ -62,7 +83,7 @@ export class Dashboard extends Component {
 				universityGradYear
 			} = this.props.auth;
 			return (
-				<div className="box has-background-white-bis">
+				<div className="box">
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column">
@@ -109,27 +130,7 @@ export class Dashboard extends Component {
 							</span>
 						</p>
 						<ul className="menu-list">
-							<li>
-								<ul>
-									<li>
-										<Link className="is-active">
-											University of Southern California
-										</Link>
-									</li>
-									<li>
-										<Link>Chulalongkorn University</Link>
-									</li>
-									<li>
-										<Link>King's College London</Link>
-									</li>
-									<li>
-										<br />
-										<div className="button is-italic">
-											Add University
-										</div>
-									</li>
-								</ul>
-							</li>
+							<li>{this.createUniversityList()}</li>
 						</ul>
 					</aside>
 				</div>
@@ -142,7 +143,7 @@ export class Dashboard extends Component {
 	}
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getUni };
 
 function mapStateToProps(state) {
 	return {

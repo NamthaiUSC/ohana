@@ -25,9 +25,26 @@ export const getUser = selfID => async dispatch => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const addToApplying = (selfID, universityID) => async dispatch => {
+	await axios.put("/api/add_to_applying/", {
+		data: { selfID: selfID, universityID: universityID }
+	});
+	const res = await axios.get("/api/get_user/" + selfID);
+
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const deleteFromApplying = (selfID, universityID) => async dispatch => {
+	await axios.put("/api/delete_from_applying/", {
+		data: { selfID: selfID, universityID: universityID }
+	});
+	const res = await axios.get("/api/get_user/" + selfID);
+
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
+
 export const getStudent = id => async dispatch => {
 	const res = await axios.get("/api/get_user/" + id);
-	console.log(res.data);
 	dispatch({ type: GET_STUDENT, payload: res.data });
 };
 

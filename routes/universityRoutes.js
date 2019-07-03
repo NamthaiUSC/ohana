@@ -6,8 +6,17 @@ module.exports = app => {
 	app.get("/api/get_uni/:universityName", async (req, res) => {
 		await University.findOne({ universityName: req.params.universityName })
 			.populate("studentsAttending")
-			.exec((err, uni) => {
-				res.send(uni);
+			.exec(async (err, uni) => {
+				if (uni) {
+					res.send(uni);
+				} else {
+					const newUni = await new University({
+						universityName: req.params.universityName,
+						studentsAttending: []
+					}).save();
+
+					res.send(newUni);
+				}
 			});
 	});
 };

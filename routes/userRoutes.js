@@ -9,9 +9,28 @@ module.exports = app => {
 	app.get("/api/get_user/:id", async (req, res) => {
 		await User.findById(req.params.id)
 			.populate("university")
+			.populate("universitiesApplying")
 			.exec((err, user) => {
 				res.send(user);
 			});
+	});
+
+	app.put("/api/add_to_applying/", async (req, res) => {
+		const { selfID, universityID } = req.body.data;
+		const user = await User.findById(selfID);
+		user.universitiesApplying.push(universityID);
+		await user.save();
+
+		res.send(user);
+	});
+
+	app.put("/api/delete_from_applying/", async (req, res) => {
+		const { selfID, universityID } = req.body.data;
+		const user = await User.findById(selfID);
+		user.universitiesApplying.remove(universityID);
+		await user.save();
+
+		res.send(user);
 	});
 
 	app.put("/api/update_info", async (req, res) => {

@@ -71,23 +71,19 @@ export class ProfileCard extends Component {
 							</span>
 						</div>
 						<br />
-						<p className="menu-label">Contact Information</p>
+						<p className="menu-label">Preferred Contact Points</p>
 						<ul className="menu-list">
-							<li>
-								<Link>Facebook: Naman Kedia</Link>
-							</li>
+							<li>Email: {email}</li>
 						</ul>
 					</aside>
 				</div>
 			);
 		}
-		if (this.props.auth) {
-			return (
-				<div className="notification is-italic">
-					Click on users to display their information here
-				</div>
-			);
-		}
+		return (
+			<div className="notification is-italic">
+				Click on users to display their information here
+			</div>
+		);
 	}
 
 	render() {
@@ -100,8 +96,8 @@ export class ProfileCard extends Component {
 	}
 }
 
-function mapStateToProps({ student, auth }) {
-	return { student, auth };
+function mapStateToProps({ student }) {
+	return { student };
 }
 
 const mapDispatchToProps = {};
