@@ -83,7 +83,7 @@ export class Dashboard extends Component {
 				universityGradYear
 			} = this.props.auth;
 			return (
-				<div className="box">
+				<div className="box ">
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column">
@@ -123,6 +123,7 @@ export class Dashboard extends Component {
 							{this.renderMyHighSchool()}
 							{this.renderMyUni()}
 						</ul>
+						<br />
 						<p className="menu-label">
 							<span>
 								My University Applications ({universityGradYear}

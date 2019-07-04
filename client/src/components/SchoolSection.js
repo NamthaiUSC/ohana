@@ -179,7 +179,7 @@ export class SchoolSection extends Component {
 						<div className="columns">
 							<div className="column ">
 								<span className="title is-2 has-text-danger">
-									Begin your University search now!
+									Begin your university search here!
 								</span>{" "}
 							</div>
 						</div>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import UniSearchBar from "./UniSearchBar";
+import SignInButton from "./SignInButton";
 
 class Header extends Component {
 	constructor(props) {
@@ -52,50 +53,6 @@ class Header extends Component {
 		}
 	}
 
-	renderLogin() {
-		switch (this.props.auth) {
-			case null:
-				return (
-					<div className="button is-link is-loading">Sign out</div>
-				);
-			case false:
-				return (
-					<div className="field has-addons">
-						<p className="control">
-							<a
-								className="button is-link is-outlined has-background-white"
-								href="/auth/google"
-							>
-								<figure className="image is-24x24">
-									<img
-										src="https://developers.google.com/identity/images/g-logo.png"
-										alt="google logo"
-									/>
-								</figure>
-							</a>
-						</p>
-						<p className="control">
-							<a
-								className="button is-link has-text-weight-bold is-normal"
-								href="/auth/google"
-							>
-								Sign in with Google
-							</a>
-						</p>
-					</div>
-				);
-			default:
-				return (
-					<a
-						className="button is-link is-outlined"
-						href="/api/logout"
-					>
-						<strong>Sign out</strong>
-					</a>
-				);
-		}
-	}
-
 	renderEditButton() {
 		switch (this.props.auth) {
 			case null:
@@ -115,6 +72,26 @@ class Header extends Component {
 						</span>{" "}
 						<strong>Edit Profile</strong>
 					</button>
+				);
+		}
+	}
+
+	renderTabs() {
+		switch (this.props.auth) {
+			case null:
+				return <div />;
+			case false:
+				return <div />;
+			default:
+				return (
+					<div className="navbar-item is-tab">
+						<Link
+							to={this.props.auth ? "/home" : "/"}
+							className=" title is-5 has-text-link"
+						>
+							Home
+						</Link>
+					</div>
 				);
 		}
 	}
@@ -141,16 +118,7 @@ class Header extends Component {
 				</div>
 				<div className="navbar-item" />
 				<div id="navbarBasicExample" className="navbar-menu">
-					<div className="navbar-start">
-						<div className="navbar-item is-tab">
-							<Link
-								to={this.props.auth ? "/home" : "/"}
-								className=" title is-5 has-text-link"
-							>
-								Home
-							</Link>
-						</div>
-					</div>
+					<div className="navbar-start">{this.renderTabs()}</div>
 
 					<div className="navbar-item is-expanded has-text-centered is-inline-block">
 						<div
@@ -165,7 +133,7 @@ class Header extends Component {
 							<div>{this.renderEditButton()}</div>
 						</div>
 						<div className="navbar-item">
-							<div>{this.renderLogin()}</div>
+							<SignInButton />
 						</div>
 					</div>
 				</div>

@@ -33,12 +33,13 @@ export class Home extends Component {
 
 		return (
 			<div className="has-text-centered">
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
+				<section className="hero is-fullheight-with-navbar ">
+					<div className="hero-body">
+						<div className="container">
+							<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
+						</div>
+					</div>
+				</section>
 			</div>
 		);
 	}
