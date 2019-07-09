@@ -8,11 +8,14 @@ node_modules
 # testing
 coverage
 
-# production
-build
+# production (not ignoring this for now to deploy to elastic beanstalk)
+#build
 
 # keys
 dev.js
+
+# aws elastic beanstalk files
+.elasticbeanstalk/
 
 # misc
 .DS_Store
