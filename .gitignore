@@ -14,9 +14,6 @@ coverage
 # keys
 dev.js
 
-# aws elastic beanstalk files
-.elasticbeanstalk/
-
 # misc
 .DS_Store
 .env.local
@@ -27,3 +24,8 @@ dev.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
