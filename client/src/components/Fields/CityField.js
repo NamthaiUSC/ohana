@@ -49,7 +49,7 @@ export class CityField extends Component {
 					<span className="icon is-small">
 						<i className="fas fa-plus" />
 					</span>{" "}
-					<span>Add a new city</span>
+					<span>Add new city</span>
 				</div>
 			);
 		} else if (whichField === "add") {
@@ -63,7 +63,7 @@ export class CityField extends Component {
 					<span className="icon is-small">
 						<i className="fas fa-search" />
 					</span>{" "}
-					<span>Find an existing city</span>
+					<span>Find existing city</span>
 				</div>
 			);
 		}
@@ -143,16 +143,18 @@ export class CityField extends Component {
 				<div>
 					<label className="subtitle is-5">{label}</label>
 					{this.renderAddButton()}
+					{this.renderInfoIcon()}
 					<p className="control has-icons-right">
 						<input
 							className="input"
 							{...input}
-							placeholder="Add a new city"
+							placeholder="Add new city"
 						/>
 						<span className="icon is-right">
 							<i className="fas fa-globe-asia" />
 						</span>
 					</p>
+					{this.displayInfo()}
 					<div className="has-text-danger is-italic">
 						{touched && error}
 					</div>

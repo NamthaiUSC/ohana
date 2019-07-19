@@ -48,7 +48,7 @@ export class HighSchoolField extends Component {
 					<span className="icon is-small">
 						<i className="fas fa-plus" />
 					</span>{" "}
-					<span>Add a new school</span>
+					<span>Add new school</span>
 				</div>
 			);
 		} else if (whichField === "add") {
@@ -62,7 +62,7 @@ export class HighSchoolField extends Component {
 					<span className="icon is-small">
 						<i className="fas fa-search" />
 					</span>{" "}
-					<span>Find a school</span>
+					<span>Find existing school</span>
 				</div>
 			);
 		}
@@ -115,7 +115,7 @@ export class HighSchoolField extends Component {
 						<input
 							className="input"
 							{...input}
-							placeholder="Add a new school"
+							placeholder="Add new school"
 						/>
 						<span className="icon is-right">
 							<i className="fas fa-school" />

@@ -203,7 +203,7 @@ class ProfileForm extends Component {
 		return (
 			<div>
 				<div className="box has-background-white-bis">
-					<p className="title is-3 has-text-link">
+					<p className="title is-3 ">
 						My Profile{" "}
 						<span className="icon is-large">
 							<i className="fas fa-user-cog" />

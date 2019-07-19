@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ProfileBox from "./ProfileBox";
 import { connect } from "react-redux";
 import { addToApplying, deleteFromApplying } from "../actions";
+import UniSearchBar from "./UniSearchBar";
 
 import Grid from "./Grid";
 
@@ -104,7 +105,9 @@ export class SchoolSection extends Component {
 				studentRow.push(studentsList[i + j]);
 			}
 
-			studentGrid.push(<div className="columns">{studentRow}</div>);
+			studentGrid.push(
+				<div className="columns is-mobile">{studentRow}</div>
+			);
 		}
 
 		return (
@@ -176,13 +179,11 @@ export class SchoolSection extends Component {
 			case null:
 				return (
 					<div>
-						<div className="columns">
-							<div className="column ">
-								<span className="title is-2 has-text-danger">
-									Begin your university search here!
-								</span>{" "}
-							</div>
-						</div>
+						<UniSearchBar />
+						<br />
+						<span className="title is-2 has-text-grey-dark">
+							Begin your university search here!
+						</span>{" "}
 					</div>
 				);
 			default:
@@ -191,6 +192,8 @@ export class SchoolSection extends Component {
 				return (
 					<div>
 						<div>
+							<UniSearchBar />
+							<br />
 							<span className="title is-2 has-text-danger">
 								{universityName}
 							</span>
@@ -278,7 +281,7 @@ export class SchoolSection extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="box is-shadowless">
 				<br />
 				<div>{this.renderSchoolInfo()}</div>
 				<br />

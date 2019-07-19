@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 export class ProfileCard extends Component {
@@ -35,7 +34,7 @@ export class ProfileCard extends Component {
 							<div className="column">
 								<div>
 									<p className="subtitle is-4">{givenName}</p>
-									<p className="title is-3">{familyName}</p>
+									<p className="title is-4">{familyName}</p>
 								</div>
 							</div>
 						</div>
@@ -53,6 +52,7 @@ export class ProfileCard extends Component {
 							<i className="far fa-envelope fa-fw" />{" "}
 							<span>{email}</span>
 						</div>
+						<br />
 						<div>
 							<span className="icon">
 								<i className="fas fa-school" />
@@ -71,7 +71,7 @@ export class ProfileCard extends Component {
 							</span>
 						</div>
 						<br />
-						<p className="menu-label">Preferred Contact Points</p>
+						<p className="menu-label">Contact</p>
 						<ul className="menu-list">
 							<li>Email: {email}</li>
 						</ul>

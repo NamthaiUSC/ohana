@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
-import UniSearchBar from "./UniSearchBar";
 import SignInButton from "./SignInButton";
 
 class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			whichModal: "None"
+			whichModal: "None",
+			burgerActive: false
 		};
 	}
 
@@ -53,6 +53,16 @@ class Header extends Component {
 		}
 	}
 
+	incompleteProfileCheck() {
+		if (this.props.auth) {
+			if (!this.props.auth.city) {
+				if (this.state.whichModal !== "EditInfo") {
+					this.setState({ whichModal: "EditInfo" });
+				}
+			}
+		}
+	}
+
 	renderEditButton() {
 		switch (this.props.auth) {
 			case null:
@@ -62,7 +72,7 @@ class Header extends Component {
 			default:
 				return (
 					<button
-						className="button is-link"
+						className="button is-link is-inverted"
 						onClick={() => {
 							this.setState({ whichModal: "EditInfo" });
 						}}
@@ -76,7 +86,7 @@ class Header extends Component {
 		}
 	}
 
-	renderTabs() {
+	renderHomeTab() {
 		switch (this.props.auth) {
 			case null:
 				return <div />;
@@ -84,10 +94,10 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<div className="navbar-item is-tab">
+					<div>
 						<Link
 							to={this.props.auth ? "/home" : "/"}
-							className=" title is-5 has-text-link"
+							className=" title is-5 has-text-white"
 						>
 							Home
 						</Link>
@@ -99,33 +109,67 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar box is-paddingless  is-fixed-top"
+				className="navbar is-fixed-top has-background-link"
 				role="navigation"
 				aria-label="main navigation"
 			>
+				{this.incompleteProfileCheck()}
 				{this.renderModal()}
-				<div className="navbar-item" />
 				<div className="navbar-brand">
-					<Link
-						className="title is-2 has-text-link"
-						to={this.props.auth ? "/" : "/"}
-					>
-						<span className="icon is-medium has-text-link">
-							<i className="fas fa-globe-americas" />
-						</span>{" "}
-						hana
-					</Link>
-				</div>
-				<div className="navbar-item" />
-				<div id="navbarBasicExample" className="navbar-menu">
-					<div className="navbar-start">{this.renderTabs()}</div>
-
-					<div className="navbar-item is-expanded has-text-centered is-inline-block">
-						<div
-							className="is-inline-block has-text-left"
-							style={{ width: "50%" }}
+					<div className="navbar-item">
+						<Link
+							className="title is-2 has-text-white"
+							to={this.props.auth ? "/" : "/"}
 						>
-							<UniSearchBar />
+							<span className="icon is-small" />
+							<span className="icon is-medium has-text-white">
+								<i className="fas fa-globe-americas" />
+							</span>{" "}
+							hana
+						</Link>
+					</div>
+
+					<div
+						role="button"
+						className={
+							"navbar-burger has-text-white burger" +
+							(this.state.burgerActive ? " is-active" : "")
+						}
+						aria-label="menu"
+						aria-expanded="false"
+						data-target="navbarBasicExample"
+						onClick={() => {
+							if (this.state.burgerActive) {
+								this.setState({ burgerActive: false });
+							} else {
+								this.setState({ burgerActive: true });
+							}
+						}}
+					>
+						<span aria-hidden="true" />
+						<span aria-hidden="true" />
+						<span aria-hidden="true" />
+					</div>
+				</div>
+
+				<div
+					id="navbarBasicExample"
+					className={
+						"navbar-menu" +
+						(this.state.burgerActive ? "is-active" : "")
+					}
+				>
+					<div className="navbar-start">
+						<div className="navbar-item">
+							<Link
+								to="/about"
+								className=" title is-5 has-text-white"
+							>
+								About
+							</Link>
+						</div>
+						<div className="navbar-item is-tab">
+							{this.renderHomeTab()}
 						</div>
 					</div>
 					<div className="navbar-end">

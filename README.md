@@ -3,7 +3,7 @@
 Ohana is a platform that helps connect high school students to college students from the same high school or city.
 
 It's hard to know what a school is like, even if you visit it. The best way is to hear about it from a 
-student currently attending the school, especiallly if they have a similar background to you.
+student currently attending the school, especially if they have a similar background to you.
 
 Students from the same high school or city are also more likely to talk to and help each other because of that level of connection.
 

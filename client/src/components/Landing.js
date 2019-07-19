@@ -5,13 +5,13 @@ class Landing extends Component {
 	render() {
 		return (
 			<div>
-				<section className="hero is-fullheight-with-navbar has-background-light">
+				<section className="hero is-fullheight-with-navbar ">
 					<br />
 					<br />
 					<br />
 
 					<div className="container has-text-centered">
-						<h1 className="title is-1 has-text-link">
+						<h1 className="title is-1 has-text-grey-dark">
 							Find your university fit now!
 						</h1>
 						<h1 className="title has-text-grey">
@@ -27,55 +27,52 @@ class Landing extends Component {
 						<br />
 					</div>
 					<div className="columns">
-						<div className="column " />
+						<div className="column is-one-quarter" />
 						<div className="column has-text-centered">
 							<span className="icon is-large has-text-primary">
-								<i className="fas fa-school fa-10x" />
+								<i className="fas fa-school fa-8x" />
 							</span>
 						</div>
 						<div className="column has-text-centered">
 							<span className="icon is-large has-text-link">
-								<i className="fas fa-exchange-alt fa-7x" />
+								<i className="fas fa-exchange-alt fa-6x" />
 							</span>
 						</div>
 						<div className="column has-text-centered">
 							<span className="icon is-large has-text-danger">
-								<i className="fas fa-university fa-10x" />
+								<i className="fas fa-university fa-9x" />
 							</span>
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<SignInButton isLarge={true} />
-							<br />
-							<br />
-							<br />
 						</div>
 						<div className="column has-text-centered">
 							<span className="icon is-large has-text-link">
-								<i className="fas fa-exchange-alt fa-7x" />
+								<i className="fas fa-exchange-alt fa-6x" />
 							</span>
 						</div>
 						<div className="column has-text-centered">
 							<span className="icon is-large has-text-info">
-								<i className="fas fa-globe-asia fa-10x" />
+								<i className="fas fa-globe-asia fa-8x" />
 							</span>
 						</div>
-						<div className="column " />
+						<div className="column is-one-quarter" />
 					</div>
-
-					<div className="hero-body has-background-link">
-						<div className="container has-text-centered">
-							<h1 className="title has-text-white-bis">
-								"Ohana means family. Family means nobody gets
-								left behind or forgotten."
-							</h1>
-							<h2 className="subtitle has-text-light">
-								-Lilo and Stitch
-							</h2>
+					<div className="container">
+						<br />
+						<br />
+						<SignInButton isLarge={true} />
+						<br />
+						<br />
+					</div>
+					<section className="hero is-link is-bold">
+						<div className="hero-body">
+							<div className="container has-text-centered">
+								<h1 className="title">
+									"Ohana means family. Family means nobody
+									gets left behind or forgotten."
+								</h1>
+								<h2 className="subtitle">-Lilo and Stitch</h2>
+							</div>
 						</div>
-					</div>
+					</section>
 				</section>
 			</div>
 		);

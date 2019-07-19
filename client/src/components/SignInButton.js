@@ -20,8 +20,10 @@ export class SignInButton extends Component {
 						}}
 					/>
 					<div className="modal-content">
-						<div className="box has-background-light">
-							<div className="title has-text-link">Sign In</div>
+						<div className="box has-background-light has-text-centered">
+							<div className="title has-text-grey-dark">
+								Sign In
+							</div>
 							<div className="is-inline-block">
 								<div className="field has-addons">
 									<p className="control">
@@ -85,7 +87,7 @@ export class SignInButton extends Component {
 				}
 				return (
 					<div
-						className="button is-link"
+						className="button is-link is-inverted"
 						onClick={() => {
 							this.setState({ modalActive: true });
 						}}
@@ -94,9 +96,19 @@ export class SignInButton extends Component {
 					</div>
 				);
 			default:
+				if (this.props.isLarge) {
+					return (
+						<a
+							className="button is-link is-outlined"
+							href="/api/logout"
+						>
+							<strong>Sign out</strong>
+						</a>
+					);
+				}
 				return (
 					<a
-						className="button is-link is-outlined"
+						className="button is-link is-inverted is-outlined"
 						href="/api/logout"
 					>
 						<strong>Sign out</strong>

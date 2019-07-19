@@ -36,11 +36,11 @@ export class ProfileBox extends Component {
 							alt="Placeholder"
 						/>
 					</figure>
-					<p>
+					<p className="has-text-weight-bold">
 						{givenName} {familyName}
 					</p>
-					<p>{highSchoolGradYear}</p>
-					<p>{major}</p>
+					<p className="">{major}</p>
+					<p className="is-size-7">{highSchoolGradYear}</p>
 				</div>
 			</a>
 		);

@@ -6,7 +6,7 @@ export class Dashboard extends Component {
 	renderMyUni() {
 		if (this.props.auth.university) {
 			return (
-				<li>
+				<li className=" has-text-danger has-text-weight-bold">
 					<span className="icon">
 						<i className="fas fa-university" />
 					</span>{" "}
@@ -22,7 +22,7 @@ export class Dashboard extends Component {
 	renderMyHighSchool() {
 		if (this.props.auth.highSchool) {
 			return (
-				<li>
+				<li className=" has-text-primary has-text-weight-bold">
 					<span className="icon">
 						<i className="fas fa-school" />
 					</span>{" "}
@@ -38,7 +38,7 @@ export class Dashboard extends Component {
 	renderMyLocation() {
 		if (this.props.auth.country && this.props.auth.city) {
 			return (
-				<div>
+				<div className=" has-text-info has-text-weight-bold">
 					<span className="icon">
 						<i className="fas fa-globe-asia fa-fw" />
 					</span>{" "}
@@ -60,13 +60,17 @@ export class Dashboard extends Component {
 
 	createUniversityList() {
 		let universityList = [];
-
+		let count = 0;
 		this.props.auth.universitiesApplying.forEach(element => {
 			universityList.push(
-				<li onClick={() => this.props.getUni(element.universityName)}>
+				<li
+					key={count}
+					onClick={() => this.props.getUni(element.universityName)}
+				>
 					<a>{element.universityName}</a>
 				</li>
 			);
+			count++;
 		});
 
 		return <ul>{universityList}</ul>;
@@ -121,6 +125,7 @@ export class Dashboard extends Component {
 						<p className="menu-label">My Schools</p>
 						<ul className="menu-list">
 							{this.renderMyHighSchool()}
+							<br />
 							{this.renderMyUni()}
 						</ul>
 						<br />
