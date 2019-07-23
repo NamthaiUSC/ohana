@@ -14,7 +14,7 @@ export class Home extends Component {
 	renderHome() {
 		if (this.props.auth) {
 			return (
-				<div className="">
+				<div className="container">
 					<div className="columns">
 						<div className="column is-one-fifth ">
 							<Dashboard />

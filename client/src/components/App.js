@@ -18,7 +18,7 @@ class App extends Component {
 		return (
 			<div>
 				<BrowserRouter>
-					<div>
+					<div className="has-background-white-bis">
 						<Header />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/home" component={Home} />

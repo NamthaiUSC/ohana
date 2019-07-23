@@ -5,7 +5,11 @@ class ItemRenderer extends PureComponent {
 	render() {
 		// Access the items array using the "data" prop:
 		const item = this.props.data[this.props.index];
-		return <div className="box is-shadowless">{item}</div>;
+		return (
+			<div className="box is-shadowless has-background-white-bis">
+				{item}
+			</div>
+		);
 	}
 }
 

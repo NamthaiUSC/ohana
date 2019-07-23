@@ -5,14 +5,14 @@ class Landing extends Component {
 	render() {
 		return (
 			<div>
-				<section className="hero is-fullheight-with-navbar ">
+				<section className="hero is-fullheight-with-navbar has-background-white-bis">
 					<br />
 					<br />
 					<br />
 
 					<div className="container has-text-centered">
 						<h1 className="title is-1 has-text-grey-dark">
-							Find your university fit now!
+							Find the right university for you now!
 						</h1>
 						<h1 className="title has-text-grey">
 							Talk to{" "}

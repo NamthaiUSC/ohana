@@ -4,7 +4,7 @@ export class Footer extends Component {
 	render() {
 		return (
 			<div>
-				<footer className="footer">
+				<footer className="footer has-background-light">
 					<div className="content has-text-centered is-size-7">
 						<div>
 							Ohana

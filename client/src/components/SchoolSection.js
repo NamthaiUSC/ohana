@@ -6,13 +6,13 @@ import UniSearchBar from "./UniSearchBar";
 
 import Grid from "./Grid";
 
-const columns = 4;
+const columns = 3;
 
 export class SchoolSection extends Component {
 	//message shown when user has not compeleted their informaiton section
 	missingUserInfoMessage() {
 		return (
-			<div className="notification is-warning has-text-weight-bold is-italic">
+			<div className="box has-background-warning has-text-weight-bold is-italic">
 				Press the{" "}
 				<span className="icon has-text-link">
 					<i className="fas fa-user-cog" />
@@ -25,13 +25,13 @@ export class SchoolSection extends Component {
 
 	//message shown before user has search any univeristy
 	preSearchMessage() {
-		return <div className="notification is-size-6">Search to start!</div>;
+		return <div className="box has-background-white">Search to start!</div>;
 	}
 
 	//message shown when no match to shared background filter e.g. no one attending this schooll from the same city
 	emptyMatchMessage(sharedBackground) {
 		return (
-			<div className="notification">
+			<div className="box has-background-white">
 				<span>
 					Sorry, we couldn't find any other students from{" "}
 					<span> </span>
@@ -56,7 +56,10 @@ export class SchoolSection extends Component {
 			let count = 0;
 			studentsAttending.forEach(student => {
 				const studentBox = (
-					<div className="column is-one-quarter" key={count}>
+					<div
+						className="column is-one-quarter is-5-mobile"
+						key={count}
+					>
 						<ProfileBox
 							key={count}
 							id={student._id}
@@ -105,9 +108,7 @@ export class SchoolSection extends Component {
 				studentRow.push(studentsList[i + j]);
 			}
 
-			studentGrid.push(
-				<div className="columns is-mobile">{studentRow}</div>
-			);
+			studentGrid.push(<div className="columns">{studentRow}</div>);
 		}
 
 		return (
@@ -194,12 +195,10 @@ export class SchoolSection extends Component {
 						<div>
 							<UniSearchBar />
 							<br />
-							<span className="title is-2 has-text-danger">
+							<div className="title is-2 has-text-danger">
 								{universityName}
-							</span>
-							<div className="is-pulled-right">
-								{this.AddOrRemoveFromApplyingButton()}
 							</div>
+							<div>{this.AddOrRemoveFromApplyingButton()}</div>
 						</div>
 					</div>
 				);
@@ -281,7 +280,7 @@ export class SchoolSection extends Component {
 
 	render() {
 		return (
-			<div className="box is-shadowless">
+			<div className="box is-shadowless has-background-white-bis">
 				<br />
 				<div>{this.renderSchoolInfo()}</div>
 				<br />

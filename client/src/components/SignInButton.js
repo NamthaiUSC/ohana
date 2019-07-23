@@ -87,7 +87,7 @@ export class SignInButton extends Component {
 				}
 				return (
 					<div
-						className="button is-link is-inverted"
+						className="button is-link "
 						onClick={() => {
 							this.setState({ modalActive: true });
 						}}
@@ -108,7 +108,7 @@ export class SignInButton extends Component {
 				}
 				return (
 					<a
-						className="button is-link is-inverted is-outlined"
+						className="button is-link is-outlined"
 						href="/api/logout"
 					>
 						<strong>Sign out</strong>

@@ -23,7 +23,7 @@ export class ProfileCard extends Component {
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column">
-								<figure className="image is-128x128">
+								<figure className="image is-128x128 container">
 									<img
 										className="is-rounded"
 										src={photoURL}
@@ -31,13 +31,12 @@ export class ProfileCard extends Component {
 									/>
 								</figure>
 							</div>
-							<div className="column">
-								<div>
-									<p className="subtitle is-4">{givenName}</p>
-									<p className="title is-4">{familyName}</p>
-								</div>
-							</div>
 						</div>
+						<div>
+							<p className="subtitle is-4">{givenName}</p>
+							<p className="title is-4">{familyName}</p>
+						</div>
+						<br />
 						<div className=" is-size-6">
 							<i className="fas fa-globe-asia fa-fw" />{" "}
 							<span>
@@ -80,15 +79,24 @@ export class ProfileCard extends Component {
 			);
 		}
 		return (
-			<div className="notification is-italic">
-				Click on users to display their information here
+			<div className="box is-italic has-background-white">
+				<div className="columns">
+					<div className="column is-narrow">
+						<span className="icon is-medium has-text-grey">
+							<i className="fas fa-info-circle fa-2x" />
+						</span>
+					</div>
+					<div className="column">
+						Click on users to display their information here
+					</div>
+				</div>
 			</div>
 		);
 	}
 
 	render() {
 		return (
-			<div>
+			<div style={{ position: "sticky", top: "3.5rem" }}>
 				<br />
 				{this.renderProfileCard()}
 			</div>

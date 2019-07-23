@@ -10,6 +10,10 @@ import CountryField from "./Fields/CountryField";
 import CityField from "./Fields/CityField";
 
 class ProfileForm extends Component {
+	state = {
+		showUniversityFields: false
+	};
+
 	componentDidMount() {
 		this.props.initialize(this.props.initialValues);
 		this.props.getAllHighSchools();
@@ -24,7 +28,7 @@ class ProfileForm extends Component {
 						<Field
 							component={InfoField}
 							type="text"
-							label="Display Name"
+							label="Given Name"
 							name="givenName"
 							placeholder="Lilo"
 						/>
@@ -124,46 +128,50 @@ class ProfileForm extends Component {
 	}
 
 	renderUniversityField() {
-		return (
-			<div>
-				<div className="columns">
-					<div className="column">
-						<Field
-							component={InfoField}
-							type="text"
-							label="Major"
-							name="major"
-							icon={<i className="fas fa-book fa-fw" />}
-							placeholder="Basket Weaving"
-						/>
-					</div>
-					<div className="column is-one-third">
-						<Field
-							component={InfoField}
-							type="number"
-							label="Grad Year"
-							icon={<i className="fas fa-graduation-cap" />}
-							name="universityGradYear"
-							placeholder={2021}
-						/>
-					</div>
-				</div>
+		if (this.state.showUniversityFields) {
+			return (
 				<div>
-					<Field
-						component={UniField}
-						type="text"
-						label="University"
-						name="universityName"
-						currentValue={
-							this.props.auth.university
-								? this.props.auth.university.universityName
-								: "None"
-						}
-					/>
+					<div className="columns">
+						<div className="column">
+							<Field
+								component={InfoField}
+								type="text"
+								label="Major"
+								name="major"
+								icon={<i className="fas fa-book fa-fw" />}
+								placeholder="Basket Weaving"
+							/>
+						</div>
+						<div className="column is-one-third">
+							<Field
+								component={InfoField}
+								type="number"
+								label="Grad Year"
+								icon={<i className="fas fa-graduation-cap" />}
+								name="universityGradYear"
+								placeholder={2021}
+							/>
+						</div>
+					</div>
+					<div>
+						<Field
+							component={UniField}
+							type="text"
+							label="University"
+							name="universityName"
+							currentValue={
+								this.props.auth.university
+									? this.props.auth.university.universityName
+									: "None"
+							}
+						/>
+					</div>
+					<br />
 				</div>
-				<br />
-			</div>
-		);
+			);
+		} else {
+			return <div />;
+		}
 	}
 
 	submit(values) {
@@ -182,20 +190,43 @@ class ProfileForm extends Component {
 				{this.renderNameField()}
 				{this.renderHighSchoolField()}
 				{this.renderLocationField()}
-				<div className="notification is-italic ">
+				{/* <div className="notification is-italic ">
 					You may leave the university field below as "None" if you're
 					still in high school.
 					<br />
 					<br />
 					Feel free to fill in your intended major and expected
 					university graduation date, however.
-				</div>
+				</div> */}
+				{this.renderSwitch()}
 				<br />
 				{this.renderUniversityField()}
 				<button className="button is-link" type="submit">
 					Update
 				</button>
 			</form>
+		);
+	}
+
+	renderSwitch() {
+		return (
+			<div className="field">
+				<input
+					id="universitySwitch"
+					type="checkbox"
+					name="universitySwitch"
+					className="switch is-rtl is-danger"
+					onClick={() => {
+						this.setState({
+							showUniversityFields: !this.state
+								.showUniversityFields
+						});
+					}}
+				/>
+				<label htmlFor="universitySwitch">
+					Have you attended or are you currently attending university?
+				</label>
+			</div>
 		);
 	}
 
@@ -238,6 +269,9 @@ function validate(values) {
 	}
 	if (!values.universityGradYear) {
 		errors["universityGradYear"] = "Required field";
+	}
+	if (!values.university) {
+		errors["universityName"] = "Required field";
 	}
 
 	return errors;

@@ -28,8 +28,7 @@ class MenuList extends Component {
 export class CityField extends Component {
 	state = {
 		selectedOption: null,
-		whichField: "find",
-		showInfo: false
+		whichField: "find"
 	};
 
 	handleChange = selectedOption => {
@@ -72,28 +71,11 @@ export class CityField extends Component {
 	renderInfoIcon() {
 		return (
 			<span
-				onMouseEnter={() => this.setState({ showInfo: true })}
-				onMouseLeave={() => this.setState({ showInfo: false })}
+				className="icon is-small has-text-grey-light tooltip is-tooltip-right"
+				data-tooltip="Place where you grew up"
 			>
-				<span className="icon is-small has-text-grey-light">
-					<i className="fas fa-info-circle" />
-				</span>
+				<i className="fas fa-info-circle" />
 			</span>
-		);
-	}
-
-	displayInfo() {
-		if (this.state.showInfo) {
-			return (
-				<div className="is-italic has-text-info">
-					City/town that you grew up in
-				</div>
-			);
-		}
-		return (
-			<div className="is-italic has-text-white-bis">
-				City/townthat you grew up in
-			</div>
 		);
 	}
 
@@ -132,7 +114,6 @@ export class CityField extends Component {
 							</span>
 						}
 					/>
-					{this.displayInfo()}
 					<div className="has-text-danger is-italic">
 						{touched && error}
 					</div>
@@ -154,7 +135,6 @@ export class CityField extends Component {
 							<i className="fas fa-globe-asia" />
 						</span>
 					</p>
-					{this.displayInfo()}
 					<div className="has-text-danger is-italic">
 						{touched && error}
 					</div>

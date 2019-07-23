@@ -4,15 +4,30 @@ export class About extends Component {
 	renderAbout() {
 		return (
 			<div>
-				<section className="hero is-fullheight-with-navbar ">
+				<section className="hero is-fullheight-with-navbar">
 					<section className="hero is-primary is-bold">
-						<div className="hero-body">
-							<div className="container">
-								<h1 className="title">High school students</h1>
-								<h2 className="subtitle">
-									Find your perfect university
-								</h2>
-								<br />
+						<div className="columns">
+							<div className="column is-1" />
+							<div className="column ">
+								<div className="hero-body">
+									<div className="columns">
+										<div className="column is-narrow">
+											<span className="icon is-large has-text-white">
+												<i className="fas fa-school fa-3x" />
+											</span>
+										</div>
+										<div className="column">
+											<div className="container">
+												<h1 className="title">
+													High school students
+												</h1>
+												<h2 className="subtitle">
+													Find the perfect university
+												</h2>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</section>
@@ -20,23 +35,22 @@ export class About extends Component {
 						<div className="columns">
 							<div className="column is-one-quarter " />
 							<div className="column">
-								<div className="hero-body">
+								<div className="hero-body ">
 									<div className="container ">
 										<h1 className="title ">
 											Our mission is to help students find
-											the university experience that's
-											right for them.
+											the right university.
 										</h1>
 										<p>
 											Applying for university can be a
 											daunting task; there are so many out
-											there it's impossible to know if one
-											really is the right “fit” for you.
-											The best way to learn what a school
-											is like seems to be hearing about it
-											from a student currently attending
-											the school, but what if you don’t
-											know anyone there?
+											there it's impossible to know which
+											ones are right for you. The best way
+											to learn what a school is like seems
+											to be hearing about it from a
+											student currently attending the
+											school, but what if you don’t know
+											anyone there?
 										</p>
 										<br />
 										<p>
@@ -50,9 +64,10 @@ export class About extends Component {
 											launching pad for exchange and
 											conversation. The university student
 											can help the high school student
-											learn what life and education at the
-											university is like whilst building a
-											community.
+											learn about the university—and
+											perhaps even help with the
+											application process—whilst building
+											a community.
 										</p>
 									</div>
 								</div>
@@ -62,13 +77,28 @@ export class About extends Component {
 					</section>
 
 					<section className="hero is-danger is-bold">
-						<div className="hero-body">
-							<div className="container has-text-right">
-								<h1 className="title">University students</h1>
-								<h2 className="subtitle">
-									Help build a community
-								</h2>
-								<br />
+						<div className="columns">
+							<div className="column is-two-thirds" />
+							<div className="column">
+								<div className="hero-body">
+									<div className="columns">
+										<div className="column">
+											<div className="container has-text-right">
+												<h1 className="title">
+													University students
+												</h1>
+												<h2 className="subtitle">
+													Help build a community
+												</h2>
+											</div>
+										</div>
+										<div className="column is-narrow">
+											<span className="icon is-large has-text-white">
+												<i className="fas fa-university fa-4x" />
+											</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</section>

@@ -6,14 +6,22 @@ export class Dashboard extends Component {
 	renderMyUni() {
 		if (this.props.auth.university) {
 			return (
-				<li className=" has-text-danger has-text-weight-bold">
-					<span className="icon">
-						<i className="fas fa-university" />
-					</span>{" "}
-					<span>
-						{this.props.auth.university.universityName} (
-						{this.props.auth.universityGradYear})
-					</span>
+				<li
+					onClick={() =>
+						this.props.getUni(
+							this.props.auth.university.universityName
+						)
+					}
+				>
+					<a className=" has-text-danger has-text-weight-bold">
+						<span className="icon">
+							<i className="fas fa-university" />
+						</span>{" "}
+						<span>
+							{this.props.auth.university.universityName} (
+							{this.props.auth.universityGradYear})
+						</span>
+					</a>
 				</li>
 			);
 		}
@@ -22,14 +30,16 @@ export class Dashboard extends Component {
 	renderMyHighSchool() {
 		if (this.props.auth.highSchool) {
 			return (
-				<li className=" has-text-primary has-text-weight-bold">
-					<span className="icon">
-						<i className="fas fa-school" />
-					</span>{" "}
-					<span>
-						{this.props.auth.highSchool} (
-						{this.props.auth.highSchoolGradYear})
-					</span>
+				<li>
+					<a className=" has-text-primary has-text-weight-bold">
+						<span className="icon">
+							<i className="fas fa-school" />
+						</span>{" "}
+						<span>
+							{this.props.auth.highSchool} (
+							{this.props.auth.highSchoolGradYear})
+						</span>
+					</a>
 				</li>
 			);
 		}
@@ -38,14 +48,14 @@ export class Dashboard extends Component {
 	renderMyLocation() {
 		if (this.props.auth.country && this.props.auth.city) {
 			return (
-				<div className=" has-text-info has-text-weight-bold">
+				<a className=" has-text-info has-text-weight-bold">
 					<span className="icon">
 						<i className="fas fa-globe-asia fa-fw" />
 					</span>{" "}
 					<span>
 						{this.props.auth.city}, {this.props.auth.country}
 					</span>
-				</div>
+				</a>
 			);
 		}
 		return (
@@ -91,7 +101,7 @@ export class Dashboard extends Component {
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column">
-								<figure className="image is-128x128">
+								<figure className="image is-128x128 container">
 									<img
 										className="is-rounded"
 										src={photoURL}
@@ -99,13 +109,12 @@ export class Dashboard extends Component {
 									/>
 								</figure>
 							</div>
-							<div className="column">
-								<div>
-									<p className="subtitle is-4">{givenName}</p>
-									<p className="title is-4">{familyName}</p>
-								</div>
-							</div>
 						</div>
+						<div>
+							<p className="subtitle is-4">{givenName}</p>
+							<p className="title is-4">{familyName}</p>
+						</div>
+						<br />
 						<div className=" is-size-6">
 							{this.renderMyLocation()}
 						</div>
@@ -124,9 +133,12 @@ export class Dashboard extends Component {
 						<br />
 						<p className="menu-label">My Schools</p>
 						<ul className="menu-list">
-							{this.renderMyHighSchool()}
-							<br />
-							{this.renderMyUni()}
+							<li>
+								<ul>
+									{this.renderMyHighSchool()}
+									{this.renderMyUni()}
+								</ul>
+							</li>
 						</ul>
 						<br />
 						<p className="menu-label">
@@ -145,7 +157,12 @@ export class Dashboard extends Component {
 	}
 
 	render() {
-		return <div>{this.renderDashBoard()}</div>;
+		return (
+			<div>
+				<br />
+				{this.renderDashBoard()}
+			</div>
+		);
 	}
 }
 

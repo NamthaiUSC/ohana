@@ -72,7 +72,7 @@ class Header extends Component {
 			default:
 				return (
 					<button
-						className="button is-link is-inverted"
+						className="button is-link"
 						onClick={() => {
 							this.setState({ whichModal: "EditInfo" });
 						}}
@@ -97,7 +97,7 @@ class Header extends Component {
 					<div>
 						<Link
 							to={this.props.auth ? "/home" : "/"}
-							className=" title is-5 has-text-white"
+							className=" title is-5 has-text-link"
 						>
 							Home
 						</Link>
@@ -109,75 +109,77 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar is-fixed-top has-background-link"
+				className="navbar box is-paddingless is-fixed-top"
 				role="navigation"
 				aria-label="main navigation"
 			>
 				{this.incompleteProfileCheck()}
 				{this.renderModal()}
-				<div className="navbar-brand">
-					<div className="navbar-item">
-						<Link
-							className="title is-2 has-text-white"
-							to={this.props.auth ? "/" : "/"}
+				<div className="container">
+					<div className="navbar-brand">
+						<div className="navbar-item">
+							<Link
+								className="title is-2 has-text-link"
+								to={this.props.auth ? "/" : "/"}
+							>
+								<span className="icon is-small" />
+								<span className="icon is-medium has-text-link">
+									<i className="fas fa-globe-americas" />
+								</span>{" "}
+								hana
+							</Link>
+						</div>
+
+						<div
+							role="button"
+							className={
+								"navbar-burger has-text-link burger" +
+								(this.state.burgerActive ? " is-active" : "")
+							}
+							aria-label="menu"
+							aria-expanded="false"
+							data-target="navbarBasicExample"
+							onClick={() => {
+								if (this.state.burgerActive) {
+									this.setState({ burgerActive: false });
+								} else {
+									this.setState({ burgerActive: true });
+								}
+							}}
 						>
-							<span className="icon is-small" />
-							<span className="icon is-medium has-text-white">
-								<i className="fas fa-globe-americas" />
-							</span>{" "}
-							hana
-						</Link>
+							<span aria-hidden="true" />
+							<span aria-hidden="true" />
+							<span aria-hidden="true" />
+						</div>
 					</div>
 
 					<div
-						role="button"
+						id="navbarBasicExample"
 						className={
-							"navbar-burger has-text-white burger" +
-							(this.state.burgerActive ? " is-active" : "")
+							"navbar-menu" +
+							(this.state.burgerActive ? "is-active" : "")
 						}
-						aria-label="menu"
-						aria-expanded="false"
-						data-target="navbarBasicExample"
-						onClick={() => {
-							if (this.state.burgerActive) {
-								this.setState({ burgerActive: false });
-							} else {
-								this.setState({ burgerActive: true });
-							}
-						}}
 					>
-						<span aria-hidden="true" />
-						<span aria-hidden="true" />
-						<span aria-hidden="true" />
-					</div>
-				</div>
-
-				<div
-					id="navbarBasicExample"
-					className={
-						"navbar-menu" +
-						(this.state.burgerActive ? "is-active" : "")
-					}
-				>
-					<div className="navbar-start">
-						<div className="navbar-item">
-							<Link
-								to="/about"
-								className=" title is-5 has-text-white"
-							>
-								About
-							</Link>
+						<div className="navbar-start">
+							<div className="navbar-item is-tab">
+								{this.renderHomeTab()}
+							</div>
 						</div>
-						<div className="navbar-item is-tab">
-							{this.renderHomeTab()}
-						</div>
-					</div>
-					<div className="navbar-end">
-						<div className="navbar-item">
-							<div>{this.renderEditButton()}</div>
-						</div>
-						<div className="navbar-item">
-							<SignInButton />
+						<div className="navbar-end">
+							<div className="navbar-item">
+								<Link
+									to="/about"
+									className=" title is-5 has-text-link"
+								>
+									About
+								</Link>
+							</div>
+							<div className="navbar-item">
+								<div>{this.renderEditButton()}</div>
+							</div>
+							<div className="navbar-item">
+								<SignInButton />
+							</div>
 						</div>
 					</div>
 				</div>
