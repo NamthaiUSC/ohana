@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUni } from "../actions";
+import { Link } from "react-router-dom";
+
+import { getUni, getCity } from "../actions";
 
 export class Dashboard extends Component {
 	renderMyUni() {
@@ -13,7 +15,10 @@ export class Dashboard extends Component {
 						)
 					}
 				>
-					<a className=" has-text-danger has-text-weight-bold">
+					<Link
+						to={this.props.auth ? "/home" : "/"}
+						className=" has-text-danger has-text-weight-bold"
+					>
 						<span className="icon">
 							<i className="fas fa-university" />
 						</span>{" "}
@@ -21,7 +26,7 @@ export class Dashboard extends Component {
 							{this.props.auth.university.universityName} (
 							{this.props.auth.universityGradYear})
 						</span>
-					</a>
+					</Link>
 				</li>
 			);
 		}
@@ -31,7 +36,10 @@ export class Dashboard extends Component {
 		if (this.props.auth.highSchool) {
 			return (
 				<li>
-					<a className=" has-text-primary has-text-weight-bold">
+					<Link
+						to={this.props.auth ? "/highschoolpage" : "/"}
+						className=" has-text-primary has-text-weight-bold"
+					>
 						<span className="icon">
 							<i className="fas fa-school" />
 						</span>{" "}
@@ -39,7 +47,7 @@ export class Dashboard extends Component {
 							{this.props.auth.highSchool} (
 							{this.props.auth.highSchoolGradYear})
 						</span>
-					</a>
+					</Link>
 				</li>
 			);
 		}
@@ -48,14 +56,17 @@ export class Dashboard extends Component {
 	renderMyLocation() {
 		if (this.props.auth.country && this.props.auth.city) {
 			return (
-				<a className=" has-text-info has-text-weight-bold">
+				<Link
+					className=" has-text-info has-text-weight-bold"
+					to={this.props.auth ? "/citypage" : "/"}
+				>
 					<span className="icon">
 						<i className="fas fa-globe-asia fa-fw" />
 					</span>{" "}
 					<span>
 						{this.props.auth.city}, {this.props.auth.country}
 					</span>
-				</a>
+				</Link>
 			);
 		}
 		return (
@@ -77,7 +88,9 @@ export class Dashboard extends Component {
 					key={count}
 					onClick={() => this.props.getUni(element.universityName)}
 				>
-					<a>{element.universityName}</a>
+					<Link to={this.props.auth ? "/home" : "/"}>
+						{element.universityName}
+					</Link>
 				</li>
 			);
 			count++;
@@ -93,8 +106,7 @@ export class Dashboard extends Component {
 				familyName,
 				email,
 				photoURL,
-				major,
-				universityGradYear
+				major
 			} = this.props.auth;
 			return (
 				<div className="box ">
@@ -110,7 +122,7 @@ export class Dashboard extends Component {
 								</figure>
 							</div>
 						</div>
-						<div>
+						<div className="has-text-centered">
 							<p className="subtitle is-4">{givenName}</p>
 							<p className="title is-4">{familyName}</p>
 						</div>
@@ -132,20 +144,14 @@ export class Dashboard extends Component {
 						</div>
 						<br />
 						<p className="menu-label">My Schools</p>
-						<ul className="menu-list">
-							<li>
-								<ul>
-									{this.renderMyHighSchool()}
-									{this.renderMyUni()}
-								</ul>
-							</li>
+						<ul className="">
+							{this.renderMyHighSchool()}
+							<br />
+							{this.renderMyUni()}
 						</ul>
 						<br />
 						<p className="menu-label">
-							<span>
-								My University Applications ({universityGradYear}
-								)
-							</span>
+							<span>University Applications</span>
 						</p>
 						<ul className="menu-list">
 							<li>{this.createUniversityList()}</li>
@@ -157,16 +163,11 @@ export class Dashboard extends Component {
 	}
 
 	render() {
-		return (
-			<div>
-				<br />
-				{this.renderDashBoard()}
-			</div>
-		);
+		return <div>{this.renderDashBoard()}</div>;
 	}
 }
 
-const mapDispatchToProps = { getUni };
+const mapDispatchToProps = { getUni, getCity };
 
 function mapStateToProps(state) {
 	return {

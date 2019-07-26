@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import ProfileBox from "./ProfileBox";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addToApplying, deleteFromApplying } from "../actions";
 import UniSearchBar from "./UniSearchBar";
-
 import Grid from "./Grid";
 
+//number of columns to split the profile boxes into
 const columns = 3;
 
 export class SchoolSection extends Component {
@@ -25,13 +26,13 @@ export class SchoolSection extends Component {
 
 	//message shown before user has search any univeristy
 	preSearchMessage() {
-		return <div className="box has-background-white">Search to start!</div>;
+		return <div className="notification">Search to start!</div>;
 	}
 
 	//message shown when no match to shared background filter e.g. no one attending this schooll from the same city
 	emptyMatchMessage(sharedBackground) {
 		return (
-			<div className="box has-background-white">
+			<div className="notification">
 				<span>
 					Sorry, we couldn't find any other students from{" "}
 					<span> </span>
@@ -57,7 +58,7 @@ export class SchoolSection extends Component {
 			studentsAttending.forEach(student => {
 				const studentBox = (
 					<div
-						className="column is-one-quarter is-5-mobile"
+						className="column is-one-third is-4-mobile"
 						key={count}
 					>
 						<ProfileBox
@@ -108,7 +109,11 @@ export class SchoolSection extends Component {
 				studentRow.push(studentsList[i + j]);
 			}
 
-			studentGrid.push(<div className="columns">{studentRow}</div>);
+			studentGrid.push(
+				<div className="columns is-gapless is-multiline">
+					{studentRow}
+				</div>
+			);
 		}
 
 		return (
@@ -137,7 +142,11 @@ export class SchoolSection extends Component {
 	}
 
 	//renders a button to add or delete a uni to/from application list
-	AddOrRemoveFromApplyingButton() {
+	AddToApplyingButton() {
+		if (!this.props.uni) {
+			return <div />;
+		}
+
 		const { auth, uni } = this.props;
 
 		const schoolsApplying = auth.universitiesApplying;
@@ -149,7 +158,7 @@ export class SchoolSection extends Component {
 		if (uniAlreadyInList) {
 			return (
 				<div
-					className="button is-warning"
+					className="button is-warning is-small"
 					onClick={() =>
 						this.props.deleteFromApplying(auth._id, uni._id)
 					}
@@ -164,7 +173,7 @@ export class SchoolSection extends Component {
 
 		return (
 			<div
-				className="button is-danger"
+				className="button is-danger is-small"
 				onClick={() => this.props.addToApplying(auth._id, uni._id)}
 			>
 				<span className="icon ">
@@ -180,8 +189,6 @@ export class SchoolSection extends Component {
 			case null:
 				return (
 					<div>
-						<UniSearchBar />
-						<br />
 						<span className="title is-2 has-text-grey-dark">
 							Begin your university search here!
 						</span>{" "}
@@ -193,12 +200,10 @@ export class SchoolSection extends Component {
 				return (
 					<div>
 						<div>
-							<UniSearchBar />
-							<br />
-							<div className="title is-2 has-text-danger">
+							<div className="title is-2 has-text-grey-dark">
 								{universityName}
 							</div>
-							<div>{this.AddOrRemoveFromApplyingButton()}</div>
+							{this.AddToApplyingButton()}
 						</div>
 					</div>
 				);
@@ -213,14 +218,16 @@ export class SchoolSection extends Component {
 						Also went to
 					</span>
 					{"  "}
-					<span className="icon is-large has-text-primary">
-						<i className="fas fa-school fa-2x" />
-					</span>{" "}
-					<span className="title is-3 has-text-primary">
-						{this.props.auth.highSchool
-							? this.props.auth.highSchool
-							: "your high school"}
-					</span>
+					<Link to={this.props.auth ? "/highschoolpage" : "/"}>
+						<span className="icon is-large has-text-primary">
+							<i className="fas fa-school fa-2x" />
+						</span>{" "}
+						<span className="title is-3 has-text-primary">
+							{this.props.auth.highSchool
+								? this.props.auth.highSchool
+								: "your high school"}
+						</span>
+					</Link>
 				</div>
 				<br />
 				{this.createStudentWindow(
@@ -236,14 +243,16 @@ export class SchoolSection extends Component {
 			<div>
 				<div>
 					<span className="subtitle is-5 is-italic">Also from</span>{" "}
-					<span className="icon is-large has-text-info">
-						<i className="fas fa-globe-asia fa-2x" />
-					</span>{" "}
-					<span className="title is-3 has-text-info">
-						{this.props.auth.city
-							? this.props.auth.city
-							: "your city"}
-					</span>
+					<Link to={this.props.auth ? "/citypage" : "/"}>
+						<span className="icon is-large has-text-info">
+							<i className="fas fa-globe-asia fa-2x" />
+						</span>{" "}
+						<span className="title is-3 has-text-info">
+							{this.props.auth.city
+								? this.props.auth.city
+								: "your city"}
+						</span>
+					</Link>
 				</div>
 				<br />
 				{this.createStudentWindow("City", this.props.auth.city)}
@@ -258,14 +267,16 @@ export class SchoolSection extends Component {
 					<span className="subtitle is-5 is-italic">
 						Others attending
 					</span>{" "}
-					<span className="icon is-large has-text-danger">
-						<i className="fas fa-university fa-2x" />
-					</span>{" "}
-					<span className="title is-3 has-text-danger">
-						{this.props.uni
-							? this.props.uni.universityName
-							: "this university"}
-					</span>
+					<Link to={this.props.auth ? "/home" : "/"}>
+						<span className="icon is-large has-text-danger">
+							<i className="fas fa-university fa-2x" />
+						</span>{" "}
+						<span className="title is-3 has-text-danger">
+							{this.props.uni
+								? this.props.uni.universityName
+								: "this university"}
+						</span>
+					</Link>
 				</div>
 				<br />
 				{this.createStudentWindow(
@@ -280,15 +291,20 @@ export class SchoolSection extends Component {
 
 	render() {
 		return (
-			<div className="box is-shadowless has-background-white-bis">
+			<div>
+				<div className="">
+					<UniSearchBar />
+				</div>
 				<br />
-				<div>{this.renderSchoolInfo()}</div>
-				<br />
-				<div>{this.renderHighSchoolLevel()}</div>
-				<br />
-				<div>{this.renderCityLevel()}</div>
-				<br />
-				<div>{this.renderGeneralLevel()}</div>
+				<div className="box ">
+					<div>{this.renderSchoolInfo()}</div>
+					<br />
+					<div>{this.renderHighSchoolLevel()}</div>
+					<br />
+					<div>{this.renderCityLevel()}</div>
+					<br />
+					<div>{this.renderGeneralLevel()}</div>
+				</div>
 			</div>
 		);
 	}

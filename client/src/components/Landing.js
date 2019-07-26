@@ -5,7 +5,7 @@ class Landing extends Component {
 	render() {
 		return (
 			<div>
-				<section className="hero is-fullheight-with-navbar has-background-white-bis">
+				<section className="hero is-fullheight-with-navbar">
 					<br />
 					<br />
 					<br />

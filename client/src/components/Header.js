@@ -94,14 +94,48 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<div>
-						<Link
-							to={this.props.auth ? "/home" : "/"}
-							className=" title is-5 has-text-link"
-						>
-							Home
-						</Link>
-					</div>
+					<Link
+						to={this.props.auth ? "/home" : "/"}
+						className="is-size-5 has-text-dark has-text-weight-medium"
+					>
+						Home
+					</Link>
+				);
+		}
+	}
+
+	renderHighSchoolPageTab() {
+		switch (this.props.auth) {
+			case null:
+				return <div />;
+			case false:
+				return <div />;
+			default:
+				return (
+					<Link
+						to={this.props.auth ? "/highschoolpage" : "/"}
+						className="is-size-5 has-text-dark has-text-weight-medium"
+					>
+						{this.props.auth.highSchool}
+					</Link>
+				);
+		}
+	}
+
+	renderCityPageTab() {
+		switch (this.props.auth) {
+			case null:
+				return <div />;
+			case false:
+				return <div />;
+			default:
+				return (
+					<Link
+						to={this.props.auth ? "/citypage" : "/"}
+						className="is-size-5 has-text-dark has-text-weight-medium"
+					>
+						{this.props.auth.city}
+					</Link>
 				);
 		}
 	}
@@ -133,7 +167,7 @@ class Header extends Component {
 						<div
 							role="button"
 							className={
-								"navbar-burger has-text-link burger" +
+								"navbar-burger burger" +
 								(this.state.burgerActive ? " is-active" : "")
 							}
 							aria-label="menu"
@@ -164,12 +198,18 @@ class Header extends Component {
 							<div className="navbar-item is-tab">
 								{this.renderHomeTab()}
 							</div>
+							<div className="navbar-item is-tab">
+								{this.renderCityPageTab()}
+							</div>
+							<div className="navbar-item is-tab">
+								{this.renderHighSchoolPageTab()}
+							</div>
 						</div>
 						<div className="navbar-end">
 							<div className="navbar-item">
 								<Link
 									to="/about"
-									className=" title is-5 has-text-link"
+									className="is-size-6 has-text-dark"
 								>
 									About
 								</Link>

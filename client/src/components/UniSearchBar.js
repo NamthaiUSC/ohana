@@ -35,6 +35,7 @@ export class UniSearchBar extends Component {
 
 	handleChange = selectedOption => {
 		this.setState({ selectedOption });
+		console.log(selectedOption.webPage);
 		this.props.getUni(selectedOption.value);
 	};
 
@@ -45,7 +46,9 @@ export class UniSearchBar extends Component {
 				label="Single select"
 				options={Universities.map(university => ({
 					label: university.name,
-					value: university.name
+					value: university.name,
+					country: university.country,
+					webPage: university.web_pages[0]
 				}))}
 				value={selectedOption}
 				onChange={this.handleChange}

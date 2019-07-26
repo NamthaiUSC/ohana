@@ -1,8 +1,8 @@
-import { GET_CITY } from "../actions/types";
+import { GET_HIGHSCHOOL } from "../actions/types";
 
 export default function(state = null, action) {
 	switch (action.type) {
-		case GET_CITY:
+		case GET_HIGHSCHOOL:
 			return action.payload || false;
 
 		default:

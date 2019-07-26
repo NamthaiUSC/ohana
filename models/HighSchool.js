@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 //defines a new mongoDB schema
 const highSchoolSchema = new Schema({
-	highSchoolName: String,
+	highSchoolName: { type: String, index: true },
 	city: String,
 	studentsAttending: [
 		{

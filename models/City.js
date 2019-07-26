@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 //defines a new mongoDB schema
 const citySchema = new Schema({
-	cityName: String,
+	cityName: { type: String, index: true },
 	students: [
 		{
 			type: Schema.Types.ObjectId,

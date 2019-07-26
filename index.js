@@ -17,7 +17,7 @@ const universityRoutes = require("./routes/universityRoutes");
 const highSchoolRoutes = require("./routes/highSchoolRoutes");
 const cityRoutes = require("./routes/cityRoutes");
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, autoIndex: false });
 
 const app = express();
 

@@ -127,6 +127,7 @@ module.exports = app => {
 				if (inputHS) {
 					//updating reference for new hs
 					inputHS.studentsAttending.push(id);
+					await inputHS.save();
 				} else {
 					//else create new highschool and then update reference
 					const studentArray = [];
@@ -165,6 +166,7 @@ module.exports = app => {
 				if (inputCity) {
 					//updating reference for updated city
 					inputCity.students.push(id);
+					await inputCity.save();
 				} else {
 					//else create new city and then update reference
 					const studentArray = [];

@@ -22,14 +22,14 @@ export class ProfileBox extends Component {
 				<div
 					className={
 						this.state.highlight
-							? "box has-text-centered has-background-light"
-							: "box has-text-centered"
+							? "box has-text-centered has-background-light is-shadowless"
+							: "box has-text-centered is-shadowless"
 					}
 					onClick={() => this.props.getStudent(id)}
 					onMouseEnter={() => this.setState({ highlight: true })}
 					onMouseLeave={() => this.setState({ highlight: false })}
 				>
-					<figure className="image is-96x96 is-inline-block">
+					<figure className="image is-96x96 container">
 						<img
 							className="is-rounded"
 							src={photoURL}

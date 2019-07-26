@@ -32,7 +32,7 @@ export class ProfileCard extends Component {
 								</figure>
 							</div>
 						</div>
-						<div>
+						<div className="has-text-centered">
 							<p className="subtitle is-4">{givenName}</p>
 							<p className="title is-4">{familyName}</p>
 						</div>
@@ -60,6 +60,7 @@ export class ProfileCard extends Component {
 								{highSchool} ({highSchoolGradYear})
 							</span>
 						</div>
+						<br />
 						<div>
 							<span className="icon">
 								<i className="fas fa-university" />
@@ -96,8 +97,7 @@ export class ProfileCard extends Component {
 
 	render() {
 		return (
-			<div style={{ position: "sticky", top: "3.5rem" }}>
-				<br />
+			<div style={{ position: "sticky", top: "5rem" }}>
 				{this.renderProfileCard()}
 			</div>
 		);

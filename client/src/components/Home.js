@@ -15,6 +15,7 @@ export class Home extends Component {
 		if (this.props.auth) {
 			return (
 				<div className="container">
+					<br />
 					<div className="columns">
 						<div className="column is-one-fifth ">
 							<Dashboard />
@@ -37,6 +38,7 @@ export class Home extends Component {
 					<div className="hero-body">
 						<div className="container">
 							<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
+							<div>Signing In</div>
 						</div>
 					</div>
 				</section>
@@ -45,7 +47,9 @@ export class Home extends Component {
 	}
 
 	render() {
-		return <div>{this.renderHome()}</div>;
+		return (
+			<div className="has-background-white-bis">{this.renderHome()}</div>
+		);
 	}
 }
 
