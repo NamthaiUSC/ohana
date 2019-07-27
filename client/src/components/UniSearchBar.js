@@ -35,8 +35,11 @@ export class UniSearchBar extends Component {
 
 	handleChange = selectedOption => {
 		this.setState({ selectedOption });
-		console.log(selectedOption.webPage);
-		this.props.getUni(selectedOption.value);
+		const data = {
+			webPage: selectedOption.webPage,
+			country: selectedOption.country
+		};
+		this.props.getUni(selectedOption.value, data);
 	};
 
 	render() {

@@ -94,12 +94,14 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<Link
-						to={this.props.auth ? "/home" : "/"}
-						className="is-size-5 has-text-dark has-text-weight-medium"
-					>
-						Home
-					</Link>
+					<div className="navbar-item is-tab">
+						<Link
+							to={this.props.auth ? "/home" : "/"}
+							className="is-size-5 has-text-dark has-text-weight-medium"
+						>
+							Home
+						</Link>
+					</div>
 				);
 		}
 	}
@@ -112,12 +114,14 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<Link
-						to={this.props.auth ? "/highschoolpage" : "/"}
-						className="is-size-5 has-text-dark has-text-weight-medium"
-					>
-						{this.props.auth.highSchool}
-					</Link>
+					<div className="navbar-item is-tab">
+						<Link
+							to={this.props.auth ? "/highschoolpage" : "/"}
+							className="is-size-5 has-text-dark has-text-weight-medium"
+						>
+							{this.props.auth.highSchool}
+						</Link>
+					</div>
 				);
 		}
 	}
@@ -130,12 +134,14 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<Link
-						to={this.props.auth ? "/citypage" : "/"}
-						className="is-size-5 has-text-dark has-text-weight-medium"
-					>
-						{this.props.auth.city}
-					</Link>
+					<div className="navbar-item is-tab">
+						<Link
+							to={this.props.auth ? "/citypage" : "/"}
+							className="is-size-5 has-text-dark has-text-weight-medium"
+						>
+							{this.props.auth.city}
+						</Link>
+					</div>
 				);
 		}
 	}
@@ -195,15 +201,9 @@ class Header extends Component {
 						}
 					>
 						<div className="navbar-start">
-							<div className="navbar-item is-tab">
-								{this.renderHomeTab()}
-							</div>
-							<div className="navbar-item is-tab">
-								{this.renderCityPageTab()}
-							</div>
-							<div className="navbar-item is-tab">
-								{this.renderHighSchoolPageTab()}
-							</div>
+							{this.renderHomeTab()}
+							{this.renderCityPageTab()}
+							{this.renderHighSchoolPageTab()}
 						</div>
 						<div className="navbar-end">
 							<div className="navbar-item">

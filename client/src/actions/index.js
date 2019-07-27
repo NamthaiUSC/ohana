@@ -57,8 +57,10 @@ export const getStudent = id => async dispatch => {
 	dispatch({ type: GET_STUDENT, payload: res.data });
 };
 
-export const getUni = universityName => async dispatch => {
-	const res = await axios.get("/api/get_uni/" + universityName);
+export const getUni = (universityName, data) => async dispatch => {
+	const res = await axios.get("/api/get_uni/" + universityName, {
+		params: data
+	});
 	dispatch({ type: GET_UNI, payload: res.data });
 };
 

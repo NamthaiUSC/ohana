@@ -2,6 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 export class ProfileCard extends Component {
+	renderUniversityInfo() {
+		const { university, universityGradYear } = this.props.student;
+
+		if (university) {
+			return (
+				<span>
+					{university} ({universityGradYear})
+				</span>
+			);
+		}
+		return <span>No university yet</span>;
+	}
+
 	renderProfileCard() {
 		if (this.props.student) {
 			const {
@@ -45,7 +58,7 @@ export class ProfileCard extends Component {
 						</div>
 						<div className=" is-size-6">
 							<i className="fas fa-book fa-fw" />{" "}
-							<span>{major}</span>
+							<span>{major ? major : "No major yet"}</span>
 						</div>
 						<div className=" is-size-6">
 							<i className="far fa-envelope fa-fw" />{" "}
@@ -65,10 +78,7 @@ export class ProfileCard extends Component {
 							<span className="icon">
 								<i className="fas fa-university" />
 							</span>{" "}
-							<span>
-								{university.universityName} (
-								{universityGradYear})
-							</span>
+							{this.renderUniversityInfo()}
 						</div>
 						<br />
 						<p className="menu-label">Contact</p>

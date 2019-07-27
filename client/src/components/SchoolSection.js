@@ -195,7 +195,7 @@ export class SchoolSection extends Component {
 					</div>
 				);
 			default:
-				const { universityName } = this.props.uni;
+				const { universityName, country, webPage } = this.props.uni;
 
 				return (
 					<div>
@@ -203,7 +203,20 @@ export class SchoolSection extends Component {
 							<div className="title is-2 has-text-grey-dark">
 								{universityName}
 							</div>
-							{this.AddToApplyingButton()}
+							<div className="columns">
+								<div className="column is-narrow">
+									{this.AddToApplyingButton()}
+								</div>
+								<div className="column is-narrow ">
+									<span className="icon">
+										<i className="fas fa-map-marker-alt" />
+									</span>{" "}
+									{country}
+								</div>
+								<div className="column is-narrow">
+									<a href={webPage}>{webPage}</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				);

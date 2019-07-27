@@ -14,10 +14,7 @@ const userSchema = new Schema({
 	highSchoolGradYear: Number,
 	universityGradYear: Number,
 	highSchool: String,
-	university: {
-		type: Schema.Types.ObjectId,
-		ref: "universities"
-	},
+	university: String,
 	universitiesApplying: [
 		{
 			type: Schema.Types.ObjectId,

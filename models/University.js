@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 //defines a new mongoDB schema
 const universitySchema = new Schema({
 	universityName: { type: String, index: true },
-	city: String,
+	webPage: String,
+	country: String,
 	studentsAttending: [
 		{
 			type: Schema.Types.ObjectId,

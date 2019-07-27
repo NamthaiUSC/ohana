@@ -58,7 +58,7 @@ export class UniField extends Component {
 						this.handleChange();
 						input.onChange(value.value);
 					}}
-					onBlur={() => input.onBlur(input.value)}
+					onBlur={() => input.onBlur()}
 					components={{ MenuList }}
 					filterOption={createFilter({ ignoreAccents: false })}
 					placeholder={

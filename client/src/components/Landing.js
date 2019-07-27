@@ -10,7 +10,7 @@ class Landing extends Component {
 					<br />
 					<br />
 
-					<div className="container has-text-centered">
+					<div className="container has-text-centered box is-shadowless">
 						<h1 className="title is-1 has-text-grey-dark">
 							Find the right university for you now!
 						</h1>
@@ -23,17 +23,15 @@ class Landing extends Component {
 							</span>{" "}
 							or <span className="has-text-info">city</span>{" "}
 						</h1>
-						<br />
-						<br />
 					</div>
-					<div className="columns">
+					<div className="columns box is-shadowless">
 						<div className="column is-one-quarter" />
 						<div className="column has-text-centered">
 							<span className="icon is-large has-text-primary">
 								<i className="fas fa-school fa-8x" />
 							</span>
 						</div>
-						<div className="column has-text-centered">
+						<div className="column has-text-centered box is-shadowless">
 							<span className="icon is-large has-text-link">
 								<i className="fas fa-exchange-alt fa-6x" />
 							</span>
@@ -43,7 +41,7 @@ class Landing extends Component {
 								<i className="fas fa-university fa-9x" />
 							</span>
 						</div>
-						<div className="column has-text-centered">
+						<div className="column has-text-centered box is-shadowless">
 							<span className="icon is-large has-text-link">
 								<i className="fas fa-exchange-alt fa-6x" />
 							</span>

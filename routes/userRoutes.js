@@ -8,7 +8,6 @@ const City = mongoose.model("cities");
 module.exports = app => {
 	app.get("/api/get_user/:id", async (req, res) => {
 		await User.findById(req.params.id)
-			.populate("university")
 			.populate("universitiesApplying")
 			.exec((err, user) => {
 				res.send(user);
@@ -51,6 +50,7 @@ module.exports = app => {
 		doc.givenName = givenName;
 		doc.country = country;
 		doc.major = major;
+		doc.university = universityName;
 		doc.highSchoolGradYear = highSchoolGradYear;
 		doc.universityGradYear = universityGradYear;
 
@@ -68,16 +68,14 @@ module.exports = app => {
 				if (doc.university !== uni._id) {
 					//delete from old uni if it exists
 					if (doc.university) {
-						const oldUni = await University.findById(
-							doc.university
-						);
+						const oldUni = await University.findOne({
+							universityName: doc.university
+						});
 						oldUni.studentsAttending.remove(id);
 						await oldUni.save();
 					}
 
 					//update with new uni
-					//two way referencing
-					doc.university = uni._id;
 					uni.studentsAttending.push(id);
 					await uni.save();
 				}
@@ -85,7 +83,9 @@ module.exports = app => {
 			} else {
 				//deleting from old university if it exists
 				if (doc.university) {
-					const oldUni = await University.findById(doc.university);
+					const oldUni = await University.findOne({
+						universityName: doc.university
+					});
 					oldUni.studentsAttending.remove(id);
 					await oldUni.save();
 				}
@@ -93,11 +93,10 @@ module.exports = app => {
 				//create new uni and then two way reference
 				const studentArray = [];
 				studentArray.push(id);
-				const newUni = await new University({
+				await new University({
 					universityName: universityName,
 					studentsAttending: studentArray
 				}).save();
-				doc.university = newUni._id;
 			}
 		}
 

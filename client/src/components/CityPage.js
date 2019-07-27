@@ -37,6 +37,15 @@ export class CityPage extends Component {
 			let studentsList = [];
 			let count = 0;
 			students.forEach(student => {
+				const {
+					_id,
+					givenName,
+					familyName,
+					photoURL,
+					major,
+					highSchoolGradYear,
+					university
+				} = student;
 				const studentBox = (
 					<div
 						className="column is-one-third is-4-mobile"
@@ -44,12 +53,13 @@ export class CityPage extends Component {
 					>
 						<ProfileBox
 							key={count}
-							id={student._id}
-							givenName={student.givenName}
-							familyName={student.familyName}
-							photoURL={student.photoURL}
-							major={student.major}
-							highSchoolGradYear={student.highSchoolGradYear}
+							id={_id}
+							givenName={givenName}
+							familyName={familyName}
+							photoURL={photoURL}
+							major={major}
+							highSchoolGradYear={highSchoolGradYear}
+							university={university}
 						/>
 					</div>
 				);
@@ -114,7 +124,7 @@ export class CityPage extends Component {
 							</a>
 						</div>
 						<br />
-						{this.createStudentGrid(studentsList, columns)};
+						{this.createStudentGrid(studentsList, columns)}
 					</div>
 				);
 		}
@@ -126,13 +136,13 @@ export class CityPage extends Component {
 				<div className="container">
 					<br />
 					<div className="columns">
-						<div className="column is-one-fifth ">
+						<div className="column is-one-fifth is-full-mobile">
 							<Dashboard />
 						</div>
-						<div className="column is-three-fifths">
+						<div className="column is-three-fifths is-full-mobile">
 							{this.createStudentWindow()}
 						</div>
-						<div className="column is-one-fifth">
+						<div className="column is-one-fifth is-full-mobile">
 							<ProfileCard />
 						</div>
 					</div>
@@ -147,6 +157,7 @@ export class CityPage extends Component {
 					<div className="hero-body">
 						<div className="container">
 							<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
+							<div>Signing In</div>
 						</div>
 					</div>
 				</section>

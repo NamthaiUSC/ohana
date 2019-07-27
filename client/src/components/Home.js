@@ -17,13 +17,13 @@ export class Home extends Component {
 				<div className="container">
 					<br />
 					<div className="columns">
-						<div className="column is-one-fifth ">
+						<div className="column is-one-fifth is-full-mobile">
 							<Dashboard />
 						</div>
-						<div className="column is-three-fifths">
+						<div className="column is-three-fifths is-full-mobile">
 							<SchoolSection />
 						</div>
-						<div className="column is-one-fifth">
+						<div className="column is-one-fifth is-full-mobile">
 							<ProfileCard />
 						</div>
 					</div>

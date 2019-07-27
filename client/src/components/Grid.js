@@ -12,7 +12,7 @@ class ItemRenderer extends PureComponent {
 export class Grid extends Component {
 	render() {
 		const { itemsArray } = this.props;
-		const itemSize = 200;
+		const itemSize = 220;
 		return (
 			<List
 				className="List"

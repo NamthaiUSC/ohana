@@ -10,9 +10,7 @@ export class Dashboard extends Component {
 			return (
 				<li
 					onClick={() =>
-						this.props.getUni(
-							this.props.auth.university.universityName
-						)
+						this.props.getUni(this.props.auth.university)
 					}
 				>
 					<Link
@@ -23,7 +21,7 @@ export class Dashboard extends Component {
 							<i className="fas fa-university" />
 						</span>{" "}
 						<span>
-							{this.props.auth.university.universityName} (
+							{this.props.auth.university} (
 							{this.props.auth.universityGradYear})
 						</span>
 					</Link>

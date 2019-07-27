@@ -161,7 +161,7 @@ class ProfileForm extends Component {
 							name="universityName"
 							currentValue={
 								this.props.auth.university
-									? this.props.auth.university.universityName
+									? this.props.auth.university
 									: "None"
 							}
 						/>
@@ -210,22 +210,26 @@ class ProfileForm extends Component {
 
 	renderSwitch() {
 		return (
-			<div className="field">
-				<input
-					id="universitySwitch"
-					type="checkbox"
-					name="universitySwitch"
-					className="switch is-rtl is-danger"
-					onClick={() => {
-						this.setState({
-							showUniversityFields: !this.state
-								.showUniversityFields
-						});
-					}}
-				/>
-				<label htmlFor="universitySwitch">
+			<div>
+				<span>
 					Have you attended or are you currently attending university?
-				</label>
+				</span>{" "}
+				<span className="field">
+					{" "}
+					<input
+						id="universitySwitch"
+						type="checkbox"
+						name="universitySwitch"
+						className="switch  is-danger"
+						onClick={() => {
+							this.setState({
+								showUniversityFields: !this.state
+									.showUniversityFields
+							});
+						}}
+					/>
+					<label htmlFor="universitySwitch" />
+				</span>
 			</div>
 		);
 	}

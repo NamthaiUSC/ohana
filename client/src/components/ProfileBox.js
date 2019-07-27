@@ -14,7 +14,8 @@ export class ProfileBox extends Component {
 			familyName,
 			photoURL,
 			major,
-			highSchoolGradYear
+			highSchoolGradYear,
+			university
 		} = this.props;
 
 		return (
@@ -39,6 +40,7 @@ export class ProfileBox extends Component {
 					<p className="has-text-weight-bold">
 						{givenName} {familyName}
 					</p>
+					<p className="has-text-weight-medium">{university}</p>
 					<p className="">{major}</p>
 					<p className="is-size-7">{highSchoolGradYear}</p>
 				</div>
