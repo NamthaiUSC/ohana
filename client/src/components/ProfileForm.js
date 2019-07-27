@@ -210,26 +210,28 @@ class ProfileForm extends Component {
 
 	renderSwitch() {
 		return (
-			<div>
-				<span>
+			<div className="columns">
+				<div className="column is-narrow">
 					Have you attended or are you currently attending university?
-				</span>{" "}
-				<span className="field">
-					{" "}
-					<input
-						id="universitySwitch"
-						type="checkbox"
-						name="universitySwitch"
-						className="switch  is-danger"
-						onClick={() => {
-							this.setState({
-								showUniversityFields: !this.state
-									.showUniversityFields
-							});
-						}}
-					/>
-					<label htmlFor="universitySwitch" />
-				</span>
+				</div>
+				<div className="column">
+					<span className="field">
+						{" "}
+						<input
+							id="universitySwitch"
+							type="checkbox"
+							name="universitySwitch"
+							className="switch  is-danger"
+							onClick={() => {
+								this.setState({
+									showUniversityFields: !this.state
+										.showUniversityFields
+								});
+							}}
+						/>
+						<label htmlFor="universitySwitch" />
+					</span>
+				</div>
 			</div>
 		);
 	}
@@ -274,7 +276,7 @@ function validate(values) {
 	if (!values.universityGradYear) {
 		errors["universityGradYear"] = "Required field";
 	}
-	if (!values.university) {
+	if (!values.universityName) {
 		errors["universityName"] = "Required field";
 	}
 

@@ -13,6 +13,10 @@ class Header extends Component {
 		};
 	}
 
+	componentDidMount() {
+		this.incompleteProfileCheck();
+	}
+
 	renderModal() {
 		if (this.state.whichModal !== "None") {
 			return (
@@ -56,9 +60,23 @@ class Header extends Component {
 	incompleteProfileCheck() {
 		if (this.props.auth) {
 			if (!this.props.auth.city) {
-				if (this.state.whichModal !== "EditInfo") {
-					this.setState({ whichModal: "EditInfo" });
-				}
+				return (
+					<div className="modal is-active">
+						<div
+							className="modal-background"
+							onClick={() => {
+								this.setState({ whichModal: "None" });
+							}}
+						/>
+						<div className="modal-content">
+							<ProfileForm
+								exitModal={() => {
+									this.setState({ whichModal: "None" });
+								}}
+							/>
+						</div>
+					</div>
+				);
 			}
 		}
 	}

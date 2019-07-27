@@ -50,7 +50,6 @@ module.exports = app => {
 		doc.givenName = givenName;
 		doc.country = country;
 		doc.major = major;
-		doc.university = universityName;
 		doc.highSchoolGradYear = highSchoolGradYear;
 		doc.universityGradYear = universityGradYear;
 
@@ -65,7 +64,7 @@ module.exports = app => {
 			//this uni already exists
 			if (uni) {
 				//if user doesn't have an university yet or current uni is different from input one
-				if (doc.university !== uni._id) {
+				if (doc.university !== universityName) {
 					//delete from old uni if it exists
 					if (doc.university) {
 						const oldUni = await University.findOne({
@@ -82,7 +81,9 @@ module.exports = app => {
 				//else this uni doesn't exist yet
 			} else {
 				//deleting from old university if it exists
+				console.log(doc.university);
 				if (doc.university) {
+					console.log("why here");
 					const oldUni = await University.findOne({
 						universityName: doc.university
 					});
@@ -98,6 +99,7 @@ module.exports = app => {
 					studentsAttending: studentArray
 				}).save();
 			}
+			doc.university = universityName;
 		}
 
 		//? dealing with highschool

@@ -36,7 +36,6 @@ export class CountryField extends Component {
 	};
 
 	render() {
-		const { selectedOption } = this.state;
 		const {
 			input,
 			currentValue,
@@ -53,7 +52,7 @@ export class CountryField extends Component {
 						label: country.name,
 						value: country.name
 					}))}
-					value={selectedOption}
+					value={this.state.selectedOption}
 					onChange={value => {
 						this.handleChange();
 						input.onChange(value.value);
