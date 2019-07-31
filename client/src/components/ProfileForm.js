@@ -201,6 +201,8 @@ class ProfileForm extends Component {
 				{this.renderSwitch()}
 				<br />
 				{this.renderUniversityField()}
+				<br />
+				<br />
 				<button className="button is-link" type="submit">
 					Update
 				</button>

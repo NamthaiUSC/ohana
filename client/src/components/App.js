@@ -10,6 +10,7 @@ import CityPage from "./CityPage";
 import HighSchoolPage from "./HighSchoolPage";
 import About from "./About";
 import Footer from "./Footer";
+import Background from "../background.jpg";
 
 class App extends Component {
 	componentDidMount() {
@@ -20,7 +21,13 @@ class App extends Component {
 		return (
 			<div>
 				<BrowserRouter>
-					<div className="">
+					<div
+						className=""
+						style={{
+							backgroundImage: `url(${Background})`,
+							backgroundSize: "cover"
+						}}
+					>
 						<Header />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/home" component={Home} />

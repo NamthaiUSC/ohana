@@ -26,9 +26,7 @@ export class ProfileCard extends Component {
 				city,
 				country,
 				highSchool,
-				university,
-				highSchoolGradYear,
-				universityGradYear
+				highSchoolGradYear
 			} = this.props.student;
 
 			return (
@@ -90,7 +88,7 @@ export class ProfileCard extends Component {
 			);
 		}
 		return (
-			<div className="box is-italic has-background-white">
+			<div className="box is-italic">
 				<div className="columns">
 					<div className="column is-narrow">
 						<span className="icon is-medium has-text-grey">

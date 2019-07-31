@@ -40,7 +40,7 @@ export class CityField extends Component {
 		if (whichField === "find") {
 			return (
 				<div
-					className="button is-small is-italic is-info is-inverted has-text-info has-background-white-bis"
+					className="button is-small is-italic is-info has-text-info has-background-white-bis"
 					onClick={() => {
 						this.setState({ whichField: "add" });
 					}}
@@ -71,8 +71,8 @@ export class CityField extends Component {
 	renderInfoIcon() {
 		return (
 			<span
-				className="icon is-small has-text-grey-light tooltip is-tooltip-right"
-				data-tooltip="Place where you grew up"
+				className="icon is-small has-text-grey-light tooltip"
+				data-tooltip="Please search for your city before adding a new one"
 			>
 				<i className="fas fa-info-circle" />
 			</span>

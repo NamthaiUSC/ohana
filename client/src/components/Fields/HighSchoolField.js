@@ -68,6 +68,17 @@ export class HighSchoolField extends Component {
 		}
 	}
 
+	renderInfoIcon() {
+		return (
+			<span
+				className="icon is-small has-text-grey-light tooltip "
+				data-tooltip="Please search for your high school before adding a new one"
+			>
+				<i className="fas fa-info-circle" />
+			</span>
+		);
+	}
+
 	renderField() {
 		const { selectedOption, whichField } = this.state;
 		const {
@@ -83,6 +94,7 @@ export class HighSchoolField extends Component {
 				<div>
 					<label className="subtitle is-5">{label}</label>{" "}
 					{this.renderAddButton()}
+					{this.renderInfoIcon()}
 					<Select
 						label="Single select"
 						{...input}

@@ -36,10 +36,7 @@ export class Home extends Component {
 			<div className="has-text-centered">
 				<section className="hero is-fullheight-with-navbar ">
 					<div className="hero-body">
-						<div className="container">
-							<div className="button is-loading is-link is-large is-size-1 is-outlined is-inverted" />
-							<div>Signing In</div>
-						</div>
+						<div className="container" />
 					</div>
 				</section>
 			</div>
@@ -47,9 +44,7 @@ export class Home extends Component {
 	}
 
 	render() {
-		return (
-			<div className="has-background-white-bis">{this.renderHome()}</div>
-		);
+		return <div>{this.renderHome()}</div>;
 	}
 }
 

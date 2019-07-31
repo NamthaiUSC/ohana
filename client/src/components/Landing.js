@@ -6,71 +6,33 @@ class Landing extends Component {
 		return (
 			<div>
 				<section className="hero is-fullheight-with-navbar">
-					<br />
-					<br />
-					<br />
-
-					<div className="container has-text-centered box is-shadowless">
-						<h1 className="title is-1 has-text-grey-dark">
+					<div className="hero-head has-text-centered ">
+						<br />
+						<br />
+						<br />
+						<h1 className="title is-1">
 							Find the right university for you now!
 						</h1>
-						<h1 className="title has-text-grey">
-							Talk to{" "}
-							<span className="has-text-danger">university</span>{" "}
-							students from your{" "}
-							<span className="has-text-primary">
-								high school
-							</span>{" "}
-							or <span className="has-text-info">city</span>{" "}
+						<h1 className="title">
+							And give back to your community by helping kids from
+							your <br /> high school and city learn about your
+							university.
 						</h1>
 					</div>
-					<div className="columns box is-shadowless">
-						<div className="column is-one-quarter" />
-						<div className="column has-text-centered">
-							<span className="icon is-large has-text-primary">
-								<i className="fas fa-school fa-8x" />
-							</span>
-						</div>
-						<div className="column has-text-centered box is-shadowless">
-							<span className="icon is-large has-text-link">
-								<i className="fas fa-exchange-alt fa-6x" />
-							</span>
-						</div>
-						<div className="column has-text-centered">
-							<span className="icon is-large has-text-danger">
-								<i className="fas fa-university fa-9x" />
-							</span>
-						</div>
-						<div className="column has-text-centered box is-shadowless">
-							<span className="icon is-large has-text-link">
-								<i className="fas fa-exchange-alt fa-6x" />
-							</span>
-						</div>
-						<div className="column has-text-centered">
-							<span className="icon is-large has-text-info">
-								<i className="fas fa-globe-asia fa-8x" />
-							</span>
-						</div>
-						<div className="column is-one-quarter" />
-					</div>
-					<div className="container">
-						<br />
-						<br />
+
+					<div className="hero-body  container">
 						<SignInButton isLarge={true} />
+					</div>
+
+					<div className="hero-foot   has-text-centered container">
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
 						<br />
 						<br />
 					</div>
-					<section className="hero is-link is-bold">
-						<div className="hero-body">
-							<div className="container has-text-centered">
-								<h1 className="title">
-									"Ohana means family. Family means nobody
-									gets left behind or forgotten."
-								</h1>
-								<h2 className="subtitle">-Lilo and Stitch</h2>
-							</div>
-						</div>
-					</section>
 				</section>
 			</div>
 		);

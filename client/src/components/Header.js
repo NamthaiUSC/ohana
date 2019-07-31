@@ -112,14 +112,15 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<div className="navbar-item is-tab">
-						<Link
-							to={this.props.auth ? "/home" : "/"}
-							className="is-size-5 has-text-dark has-text-weight-medium"
-						>
-							Home
-						</Link>
-					</div>
+					<Link
+						to={this.props.auth ? "/home" : "/"}
+						className="is-size-5 has-text-weight-medium navbar-item"
+					>
+						<span className="icon is-medium has-text-danger">
+							<i className="fas fa-university" />
+						</span>
+						<span> Home</span>
+					</Link>
 				);
 		}
 	}
@@ -132,14 +133,15 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<div className="navbar-item is-tab">
-						<Link
-							to={this.props.auth ? "/highschoolpage" : "/"}
-							className="is-size-5 has-text-dark has-text-weight-medium"
-						>
-							{this.props.auth.highSchool}
-						</Link>
-					</div>
+					<Link
+						to={this.props.auth ? "/highschoolpage" : "/"}
+						className="is-size-5 has-text-weight-medium navbar-item"
+					>
+						<span className="icon is-medium has-text-primary">
+							<i className="fas fa-school" />
+						</span>{" "}
+						<span> {this.props.auth.highSchool}</span>
+					</Link>
 				);
 		}
 	}
@@ -152,14 +154,15 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<div className="navbar-item is-tab">
-						<Link
-							to={this.props.auth ? "/citypage" : "/"}
-							className="is-size-5 has-text-dark has-text-weight-medium"
-						>
-							{this.props.auth.city}
-						</Link>
-					</div>
+					<Link
+						to={this.props.auth ? "/citypage" : "/"}
+						className="is-size-5  has-text-weight-medium navbar-item"
+					>
+						<span className="icon is-medium has-text-info">
+							<i className="fas fa-globe-asia" />
+						</span>{" "}
+						<span> {this.props.auth.city}</span>
+					</Link>
 				);
 		}
 	}
@@ -167,21 +170,20 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar box is-paddingless is-fixed-top"
+				className="navbar is-fixed-top box is-marginless is-paddingless"
 				role="navigation"
 				aria-label="main navigation"
 			>
 				{this.incompleteProfileCheck()}
 				{this.renderModal()}
-				<div className="container">
+				<div className="container ">
 					<div className="navbar-brand">
 						<div className="navbar-item">
 							<Link
-								className="title is-2 has-text-link"
+								className="title is-3 has-text-link "
 								to={this.props.auth ? "/" : "/"}
 							>
-								<span className="icon is-small" />
-								<span className="icon is-medium has-text-link">
+								<span className="icon is-medium">
 									<i className="fas fa-globe-americas" />
 								</span>{" "}
 								hana
@@ -223,6 +225,7 @@ class Header extends Component {
 							{this.renderCityPageTab()}
 							{this.renderHighSchoolPageTab()}
 						</div>
+
 						<div className="navbar-end">
 							<div className="navbar-item">
 								<Link
