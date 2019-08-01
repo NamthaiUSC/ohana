@@ -198,6 +198,7 @@ class ProfileForm extends Component {
 					Feel free to fill in your intended major and expected
 					university graduation date, however.
 				</div> */}
+				<br />
 				{this.renderSwitch()}
 				<br />
 				{this.renderUniversityField()}

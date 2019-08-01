@@ -1,5 +1,6 @@
 import React, { Component, PureComponent } from "react";
 import { FixedSizeList as List } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 
 class ItemRenderer extends PureComponent {
 	render() {
@@ -14,19 +15,28 @@ export class Grid extends Component {
 		const { itemsArray } = this.props;
 		const itemSize = 220;
 		return (
-			<List
-				className="List"
-				height={
-					itemSize * (itemsArray.length > 3 ? 3 : itemsArray.length) +
-					30
-				}
-				itemCount={itemsArray.length}
-				itemSize={itemSize}
-				width={750}
-				itemData={itemsArray}
-			>
-				{ItemRenderer}
-			</List>
+			<div style={{ flex: "1 1 auto" }}>
+				<AutoSizer disableHeight>
+					{({ width }) => (
+						<List
+							className="List"
+							height={
+								itemSize *
+									(itemsArray.length > 3
+										? 3
+										: itemsArray.length) +
+								30
+							}
+							itemCount={itemsArray.length}
+							itemSize={itemSize}
+							width={width}
+							itemData={itemsArray}
+						>
+							{ItemRenderer}
+						</List>
+					)}
+				</AutoSizer>
+			</div>
 		);
 	}
 }

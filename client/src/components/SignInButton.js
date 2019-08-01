@@ -81,7 +81,7 @@ export class SignInButton extends Component {
 								this.setState({ modalActive: true });
 							}}
 						>
-							<strong>Sign In</strong>
+							<strong>Get Started</strong>
 						</div>
 					);
 				}

@@ -18,11 +18,11 @@ export class Footer extends Component {
 								<div>Contact: namthaih@usc.edu</div>
 								<div>
 									Feel free to shoot me an email if you have
-									any questions or feedback! Everything is
-									appreciated :)
+									any questions or feedback!
 								</div>
 							</div>
 						</div>
+						<br />
 						<div>
 							<div>
 								Background Photo by Pang Yuhao on Unsplash

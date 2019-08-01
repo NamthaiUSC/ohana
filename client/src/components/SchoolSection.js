@@ -57,10 +57,7 @@ export class SchoolSection extends Component {
 			let count = 0;
 			studentsAttending.forEach(student => {
 				const studentBox = (
-					<div
-						className="column is-one-third is-4-mobile"
-						key={count}
-					>
+					<div className="column is-one-third" key={count}>
 						<ProfileBox
 							key={count}
 							id={student._id}

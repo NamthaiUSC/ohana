@@ -47,10 +47,7 @@ export class CityPage extends Component {
 					university
 				} = student;
 				const studentBox = (
-					<div
-						className="column is-one-third is-4-mobile"
-						key={count}
-					>
+					<div className="column is-one-third" key={count}>
 						<ProfileBox
 							key={count}
 							id={_id}

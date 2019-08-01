@@ -170,7 +170,7 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar is-fixed-top box is-marginless is-paddingless"
+				className="navbar is-fixed-top is-marginless is-paddingless box"
 				role="navigation"
 				aria-label="main navigation"
 			>

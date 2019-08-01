@@ -36,7 +36,7 @@ export class About extends Component {
 							<div className="column is-one-quarter " />
 							<div className="column">
 								<div className="hero-body ">
-									<div className="container box is-shadowless">
+									<div className="container box">
 										<h1 className="title ">
 											Our mission is to help students find
 											the right university.
@@ -107,7 +107,7 @@ export class About extends Component {
 					<div className="column is-one-quarter" />
 					<div className="column">
 						<div className="hero-body">
-							<div className="container box is-shadowless">
+							<div className="container box ">
 								<h1 className="title is-3 has-text-centered">
 									Paying it forward - what I hope Ohana
 									becomes

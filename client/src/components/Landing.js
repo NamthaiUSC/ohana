@@ -10,10 +10,10 @@ class Landing extends Component {
 						<br />
 						<br />
 						<br />
-						<h1 className="title is-1">
+						<h1 className="title is-1 is-spaced">
 							Find the right university for you now!
 						</h1>
-						<h1 className="title">
+						<h1 className="subtitle is-3">
 							And give back to your community by helping kids from
 							your <br /> high school and city learn about your
 							university.
