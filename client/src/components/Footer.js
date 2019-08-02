@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class Footer extends Component {
 	render() {
@@ -7,7 +8,7 @@ export class Footer extends Component {
 				<footer className="footer">
 					<div className="level container is-size-7">
 						<div>
-							<div>
+							<div className="">
 								<div>
 									Ohana
 									<span className="icon">
@@ -15,10 +16,13 @@ export class Footer extends Component {
 									</span>
 									2019
 								</div>
-								<div>Contact: namthaih@usc.edu</div>
 								<div>
-									Feel free to shoot me an email if you have
-									any questions or feedback!
+									<Link
+										to="/privacypolicy"
+										className="has-text-dark"
+									>
+										Privacy Policy
+									</Link>
 								</div>
 							</div>
 						</div>

@@ -11,6 +11,7 @@ import HighSchoolPage from "./HighSchoolPage";
 import About from "./About";
 import Footer from "./Footer";
 import Background from "../background.jpg";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 class App extends Component {
 	componentDidMount() {
@@ -37,6 +38,11 @@ class App extends Component {
 							exact
 							path="/highschoolpage"
 							component={HighSchoolPage}
+						/>
+						<Route
+							exact
+							path="/privacypolicy"
+							component={PrivacyPolicy}
 						/>
 						<Footer />
 					</div>

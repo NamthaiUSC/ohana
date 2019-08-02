@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { updateInfo, getAllHighSchools, getAllCities } from "../actions";
+import {
+	updateInfo,
+	getAllHighSchools,
+	getAllCities,
+	deleteUser
+} from "../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import InfoField from "./Fields/InfoField";
@@ -11,7 +16,8 @@ import CityField from "./Fields/CityField";
 
 class ProfileForm extends Component {
 	state = {
-		showUniversityFields: false
+		showUniversityFields: false,
+		showDelete: false
 	};
 
 	componentDidMount() {
@@ -239,16 +245,72 @@ class ProfileForm extends Component {
 		);
 	}
 
+	deleteOption() {
+		if (this.state.showDelete) {
+			return (
+				<div className="box is-shadowless has-background-white-bis">
+					<p className="title is-5">
+						Are you sure you want to delete your account?
+					</p>{" "}
+					<div className="">
+						<a
+							className="button is-warning"
+							href="/api/logout"
+							onClick={() => {
+								this.props.deleteUser(this.props.auth._id);
+							}}
+						>
+							<span>Yes</span>
+							<span className="icon">
+								<i className="fas fa-check" />
+							</span>
+						</a>{" "}
+						<div
+							className="button is-link"
+							onClick={() => {
+								this.setState({
+									showDelete: false
+								});
+							}}
+						>
+							<span>No</span>
+							<span className="icon">
+								<i className="fas fa-times" />
+							</span>
+						</div>
+					</div>
+					<br />
+				</div>
+			);
+		} else return <div />;
+	}
+
 	render() {
 		return (
 			<div>
 				<div className="box has-background-white-bis">
-					<p className="title is-3 ">
+					<div className="title is-3 ">
 						My Profile{" "}
 						<span className="icon is-large">
 							<i className="fas fa-user-cog" />
 						</span>
-					</p>
+						<span className="is-pulled-right">
+							<div
+								className="button is-warning"
+								onClick={() => {
+									this.setState({
+										showDelete: true
+									});
+								}}
+							>
+								<span>Delete Account</span>
+								<span className="icon">
+									<i className="fas fa-trash-alt" />
+								</span>
+							</div>
+						</span>
+					</div>
+					<div className="">{this.deleteOption()}</div>
 					{this.renderForm()}
 				</div>
 			</div>
@@ -298,7 +360,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 	updateInfo,
 	getAllHighSchools,
-	getAllCities
+	getAllCities,
+	deleteUser
 };
 
 ProfileForm = reduxForm({

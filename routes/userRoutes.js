@@ -14,7 +14,7 @@ module.exports = app => {
 			});
 	});
 
-	app.put("/api/add_to_applying/", async (req, res) => {
+	app.put("/api/add_to_applying", async (req, res) => {
 		const { selfID, universityID } = req.body.data;
 		const user = await User.findById(selfID);
 		user.universitiesApplying.push(universityID);
@@ -23,13 +23,48 @@ module.exports = app => {
 		res.send(user);
 	});
 
-	app.put("/api/delete_from_applying/", async (req, res) => {
+	app.put("/api/delete_from_applying", async (req, res) => {
 		const { selfID, universityID } = req.body.data;
 		const user = await User.findById(selfID);
 		user.universitiesApplying.remove(universityID);
 		await user.save();
 
 		res.send(user);
+	});
+
+	app.delete("/api/delete_user", async (req, res) => {
+		const { selfID } = req.body;
+		const user = await User.findById(selfID);
+
+		if (user.city) {
+			//removing user from the city database
+			const city = await City.findOne({ cityName: user.city });
+			city.students.remove(selfID);
+			city.save();
+		}
+
+		if (user.highSchool) {
+			//removing user from the high school database
+			const hs = await HighSchool.findOne({
+				highSchoolName: user.highSchool
+			});
+			hs.studentsAttending.remove(selfID);
+			hs.save();
+		}
+
+		if (user.university) {
+			//removing user from the university database
+			const uni = await University.findOne({
+				universityName: user.university
+			});
+			uni.studentsAttending.remove(selfID);
+			uni.save();
+		}
+
+		await user.save();
+		await User.findByIdAndDelete(selfID);
+
+		res.send();
 	});
 
 	app.put("/api/update_info", async (req, res) => {
@@ -81,9 +116,7 @@ module.exports = app => {
 				//else this uni doesn't exist yet
 			} else {
 				//deleting from old university if it exists
-				console.log(doc.university);
 				if (doc.university) {
-					console.log("why here");
 					const oldUni = await University.findOne({
 						universityName: doc.university
 					});
