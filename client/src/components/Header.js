@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ProfileForm from "./ProfileForm";
 import SignInButton from "./SignInButton";
+import Logo from "../logo.png";
 
 class Header extends Component {
 	constructor(props) {
@@ -181,14 +182,14 @@ class Header extends Component {
 				<div className="container ">
 					<div className="navbar-brand">
 						<div className="navbar-item">
-							<Link
-								className="title is-3 has-text-link "
-								to={this.props.auth ? "/" : "/"}
-							>
-								<span className="icon is-medium">
-									<i className="fas fa-globe-americas" />
-								</span>{" "}
-								hana
+							<Link to={this.props.auth ? "/" : "/"}>
+								<img
+									src={Logo}
+									alt="Ohana"
+									width={112}
+									height={32}
+									style={{ maxHeight: "80px" }}
+								/>
 							</Link>
 						</div>
 
