@@ -80,16 +80,16 @@ export class ProfileCard extends Component {
 						</div>
 						<br />
 						<p className="menu-label">Contact</p>
-						<ul className="menu-list">
-							<li>Email: {email}</li>
-						</ul>
+						<div className="">
+							Email: <a href="mailto: {email}">{email}</a>
+						</div>
 					</aside>
 				</div>
 			);
 		}
 		return (
 			<div className="box is-italic">
-				<div className="columns">
+				<div className="columns is-mobile">
 					<div className="column is-narrow">
 						<span className="icon is-medium has-text-grey">
 							<i className="fas fa-info-circle fa-2x" />

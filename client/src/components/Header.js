@@ -89,17 +89,19 @@ class Header extends Component {
 				return <div />;
 			default:
 				return (
-					<button
-						className="button is-link"
-						onClick={() => {
-							this.setState({ whichModal: "EditInfo" });
-						}}
-					>
-						<span className="icon">
-							<i className="fas fa-user-cog" />
-						</span>{" "}
-						<strong>Edit Profile</strong>
-					</button>
+					<div className="navbar-item">
+						<button
+							className="button is-link"
+							onClick={() => {
+								this.setState({ whichModal: "EditInfo" });
+							}}
+						>
+							<span className="icon">
+								<i className="fas fa-user-cog" />
+							</span>{" "}
+							<strong>Edit Profile</strong>
+						</button>
+					</div>
 				);
 		}
 	}
@@ -235,9 +237,7 @@ class Header extends Component {
 									About
 								</Link>
 							</div>
-							<div className="navbar-item">
-								<div>{this.renderEditButton()}</div>
-							</div>
+							{this.renderEditButton()}
 							<div className="navbar-item">
 								<SignInButton />
 							</div>
