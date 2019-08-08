@@ -16,7 +16,7 @@ import CityField from "./Fields/CityField";
 
 class ProfileForm extends Component {
 	state = {
-		showUniversityFields: false,
+		showUniversityFields: true,
 		showDelete: false
 	};
 
@@ -24,6 +24,13 @@ class ProfileForm extends Component {
 		this.props.initialize(this.props.initialValues);
 		this.props.getAllHighSchools();
 		this.props.getAllCities();
+
+		//if user doesn't have university info, default the switch to false
+		if (!this.props.initialValues.university) {
+			this.setState({
+				showUniversityFields: false
+			});
+		}
 	}
 
 	renderNameField() {
@@ -237,6 +244,7 @@ class ProfileForm extends Component {
 										.showUniversityFields
 								});
 							}}
+							checked={this.state.showUniversityFields}
 						/>
 						<label htmlFor="universitySwitch" />
 					</span>
