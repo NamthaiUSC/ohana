@@ -171,7 +171,7 @@ class ProfileForm extends Component {
 							component={UniField}
 							type="text"
 							label="University"
-							name="universityName"
+							name="university"
 							currentValue={
 								this.props.auth.university
 									? this.props.auth.university
@@ -244,7 +244,7 @@ class ProfileForm extends Component {
 										.showUniversityFields
 								});
 							}}
-							checked={this.state.showUniversityFields}
+							defaultChecked={this.state.showUniversityFields}
 						/>
 						<label htmlFor="universitySwitch" />
 					</span>
@@ -349,8 +349,8 @@ function validate(values) {
 	if (!values.universityGradYear) {
 		errors["universityGradYear"] = "Required field";
 	}
-	if (!values.universityName) {
-		errors["universityName"] = "Required field";
+	if (!values.university) {
+		errors["university"] = "Required field";
 	}
 
 	return errors;

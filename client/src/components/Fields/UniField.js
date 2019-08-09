@@ -36,6 +36,7 @@ export class UniField extends Component {
 	};
 
 	render() {
+		const { selectedOption } = this.state;
 		const {
 			input,
 			currentValue,
@@ -53,7 +54,7 @@ export class UniField extends Component {
 						label: university.name,
 						value: university.name
 					}))}
-					value={this.state.selectedOption}
+					value={selectedOption}
 					onChange={value => {
 						this.handleChange();
 						input.onChange(value.value);

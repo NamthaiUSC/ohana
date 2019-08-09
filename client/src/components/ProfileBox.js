@@ -29,6 +29,7 @@ export class ProfileBox extends Component {
 					onClick={() => this.props.getStudent(id)}
 					onMouseEnter={() => this.setState({ highlight: true })}
 					onMouseLeave={() => this.setState({ highlight: false })}
+					style={{ overflowWrap: "break-word" }}
 				>
 					<figure className="image is-96x96 container">
 						<img

@@ -115,8 +115,8 @@ export class Dashboard extends Component {
 				major
 			} = this.props.auth;
 			return (
-				<div className="box ">
-					<aside className="menu">
+				<div className="box " style={{ overflowWrap: "break-word" }}>
+					<aside className="menu ">
 						<div className="columns is-vcentered">
 							<div className="column">
 								<figure className="image is-128x128 container">
@@ -136,8 +136,8 @@ export class Dashboard extends Component {
 						<div className=" is-size-6">
 							{this.renderMyLocation()}
 						</div>
-						<div className=" is-size-6">
-							<span className="icon ">
+						<div className="is-size-6">
+							<span className="icon">
 								<i className="fas fa-book fa-fw" />
 							</span>{" "}
 							<span>{major ? major : "No major yet"}</span>

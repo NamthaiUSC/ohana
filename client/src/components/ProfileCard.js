@@ -30,7 +30,7 @@ export class ProfileCard extends Component {
 			} = this.props.student;
 
 			return (
-				<div className="box">
+				<div className="box" style={{ overflowWrap: "break-word" }}>
 					<aside className="menu">
 						<div className="columns is-vcentered">
 							<div className="column">
@@ -54,7 +54,7 @@ export class ProfileCard extends Component {
 								{city}, {country}
 							</span>
 						</div>
-						<div className=" is-size-6">
+						<div className=" is-size-6 ">
 							<i className="fas fa-book fa-fw" />{" "}
 							<span>{major ? major : "No major yet"}</span>
 						</div>
