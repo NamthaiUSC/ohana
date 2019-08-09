@@ -46,22 +46,24 @@ export class HighSchoolPage extends Component {
 					highSchoolGradYear,
 					university
 				} = student;
-				const studentBox = (
-					<div className="column is-one-third" key={count}>
-						<ProfileBox
-							key={count}
-							id={_id}
-							givenName={givenName}
-							familyName={familyName}
-							photoURL={photoURL}
-							major={major}
-							highSchoolGradYear={highSchoolGradYear}
-							university={university}
-						/>
-					</div>
-				);
-				studentsList.push(studentBox);
-				count++;
+				if (university) {
+					const studentBox = (
+						<div className="column is-one-third" key={count}>
+							<ProfileBox
+								key={count}
+								id={_id}
+								givenName={givenName}
+								familyName={familyName}
+								photoURL={photoURL}
+								major={major}
+								highSchoolGradYear={highSchoolGradYear}
+								university={university}
+							/>
+						</div>
+					);
+					studentsList.push(studentBox);
+					count++;
+				}
 			});
 
 			return studentsList;

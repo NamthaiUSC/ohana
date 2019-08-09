@@ -72,7 +72,7 @@ export class CityField extends Component {
 		return (
 			<span
 				className="icon is-small has-text-grey-light tooltip"
-				data-tooltip="Please search for your city before adding a new one"
+				data-tooltip="The city you grew up in or graduated from"
 			>
 				<i className="fas fa-info-circle" />
 			</span>

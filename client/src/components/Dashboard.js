@@ -94,6 +94,14 @@ export class Dashboard extends Component {
 			count++;
 		});
 
+		if (count === 0) {
+			return (
+				<div className="is-italic notification">
+					Search universities to add them to your list here!
+				</div>
+			);
+		}
+
 		return <ul>{universityList}</ul>;
 	}
 
