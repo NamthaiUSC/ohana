@@ -13,7 +13,7 @@ class ItemRenderer extends PureComponent {
 export class Grid extends Component {
 	render() {
 		const { itemsArray } = this.props;
-		const itemSize = 250;
+		const itemSize = 240;
 		return (
 			<div style={{ flex: "1 1 auto" }}>
 				<AutoSizer disableHeight>

@@ -14,8 +14,7 @@ export class Home extends Component {
 	renderHome() {
 		if (this.props.auth) {
 			return (
-				<div className="container">
-					<br />
+				<div className="box" style={{ background: "transparent" }}>
 					<div className="columns">
 						<div className="column is-one-fifth is-full-mobile">
 							<Dashboard />

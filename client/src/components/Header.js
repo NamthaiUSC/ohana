@@ -173,25 +173,26 @@ class Header extends Component {
 	render() {
 		return (
 			<nav
-				className="navbar is-fixed-top is-marginless is-paddingless box"
+				className="navbar is-fixed-top has-shadow"
 				role="navigation"
 				aria-label="main navigation"
 			>
 				{this.incompleteProfileCheck()}
 				{this.renderModal()}
-				<div className="container ">
+				<div className="container">
 					<div className="navbar-brand">
-						<div className="navbar-item">
-							<Link to={this.props.auth ? "/" : "/"}>
-								<img
-									src={Logo}
-									alt="Ohana"
-									width={112}
-									height={32}
-									style={{ maxHeight: "80px" }}
-								/>
-							</Link>
-						</div>
+						<Link
+							className="navbar-item"
+							to={this.props.auth ? "/" : "/"}
+						>
+							<img
+								src={Logo}
+								alt="Ohana"
+								width={112}
+								height={28}
+								style={{ maxHeight: "40px" }}
+							/>
+						</Link>
 
 						<div
 							role="button"

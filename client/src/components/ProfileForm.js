@@ -25,8 +25,11 @@ class ProfileForm extends Component {
 		this.props.getAllHighSchools();
 		this.props.getAllCities();
 
-		//if user doesn't have university info, default the switch to false
-		if (!this.props.initialValues.university) {
+		//if user doesn't have university info and isn't a new user, default the switch to false
+		if (
+			!this.props.initialValues.university &&
+			this.props.initialValues.highSchool
+		) {
 			this.setState({
 				showUniversityFields: false
 			});
@@ -238,13 +241,13 @@ class ProfileForm extends Component {
 							type="checkbox"
 							name="universitySwitch"
 							className="switch  is-danger"
-							onClick={() => {
+							onChange={() => {
 								this.setState({
 									showUniversityFields: !this.state
 										.showUniversityFields
 								});
 							}}
-							defaultChecked={this.state.showUniversityFields}
+							checked={this.state.showUniversityFields}
 						/>
 						<label htmlFor="universitySwitch" />
 					</span>

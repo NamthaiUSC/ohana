@@ -7,7 +7,7 @@ import UniSearchBar from "./UniSearchBar";
 import Grid from "./Grid";
 
 //number of columns to split the profile boxes into
-const columns = 3;
+const columns = 4;
 
 export class SchoolSection extends Component {
 	//message shown when user has not compeleted their informaiton section
@@ -57,7 +57,7 @@ export class SchoolSection extends Component {
 			let count = 0;
 			studentsAttending.forEach(student => {
 				const studentBox = (
-					<div className="column is-one-third" key={count}>
+					<div className="column is-one-quarter" key={count}>
 						<ProfileBox
 							key={count}
 							id={student._id}

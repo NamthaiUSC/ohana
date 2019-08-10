@@ -6,7 +6,7 @@ import Dashboard from "./Dashboard";
 import ProfileCard from "./ProfileCard";
 import ProfileBox from "./ProfileBox";
 import Grid from "./Grid";
-const columns = 3;
+const columns = 4;
 
 export class HighSchoolPage extends Component {
 	componentDidMount() {
@@ -48,7 +48,7 @@ export class HighSchoolPage extends Component {
 				} = student;
 				if (university) {
 					const studentBox = (
-						<div className="column is-one-third" key={count}>
+						<div className="column is-one-quarter" key={count}>
 							<ProfileBox
 								key={count}
 								id={_id}
@@ -132,8 +132,7 @@ export class HighSchoolPage extends Component {
 	renderHome() {
 		if (this.props.auth && this.props.highschool) {
 			return (
-				<div className="container">
-					<br />
+				<div className="box" style={{ background: "transparent" }}>
 					<div className="columns">
 						<div className="column is-one-fifth is-full-mobile">
 							<Dashboard />

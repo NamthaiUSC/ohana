@@ -76,7 +76,7 @@ module.exports = app => {
 			major,
 			highSchool,
 			highSchoolGradYear,
-			universityName,
+			university,
 			universityGradYear
 		} = req.body;
 
@@ -90,16 +90,16 @@ module.exports = app => {
 
 		//? dealing with University
 		//if valid university name, update two way reference between user and uni
-		if (universityName && universityName !== "None") {
+		if (university && university !== "None") {
 			//find uni with input university name
 			const uni = await University.findOne({
-				universityName: universityName
+				universityName: university
 			});
 
 			//this uni already exists
 			if (uni) {
 				//if user doesn't have an university yet or current uni is different from input one
-				if (doc.university !== universityName) {
+				if (doc.university !== university) {
 					//delete from old uni if it exists
 					if (doc.university) {
 						const oldUni = await University.findOne({
@@ -128,11 +128,11 @@ module.exports = app => {
 				const studentArray = [];
 				studentArray.push(id);
 				await new University({
-					universityName: universityName,
+					universityName: university,
 					studentsAttending: studentArray
 				}).save();
 			}
-			doc.university = universityName;
+			doc.university = university;
 		}
 
 		//? dealing with highschool

@@ -61,7 +61,6 @@ export class About extends Component {
 							<br />
 							<br />
 							<br />
-							<br />
 							<h1 className="title is-2 has-text-centered">
 								Paying It Forward
 							</h1>
