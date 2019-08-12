@@ -90,6 +90,26 @@ export class HighSchoolPage extends Component {
 					{studentRow}
 				</div>
 			);
+			studentGrid.push(
+				<div className="columns is-gapless is-multiline">
+					{studentRow}
+				</div>
+			);
+			studentGrid.push(
+				<div className="columns is-gapless is-multiline">
+					{studentRow}
+				</div>
+			);
+			studentGrid.push(
+				<div className="columns is-gapless is-multiline">
+					{studentRow}
+				</div>
+			);
+			studentGrid.push(
+				<div className="columns is-gapless is-multiline">
+					{studentRow}
+				</div>
+			);
 		}
 
 		return (

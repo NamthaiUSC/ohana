@@ -6,7 +6,7 @@ class ItemRenderer extends PureComponent {
 	render() {
 		// Access the items array using the "data" prop:
 		const item = this.props.data[this.props.index];
-		return <div className="">{item}</div>;
+		return <div style={this.props.style}>{item}</div>;
 	}
 }
 
