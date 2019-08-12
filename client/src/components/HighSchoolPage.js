@@ -62,6 +62,7 @@ export class HighSchoolPage extends Component {
 						</div>
 					);
 					studentsList.push(studentBox);
+
 					count++;
 				}
 			});
@@ -85,26 +86,6 @@ export class HighSchoolPage extends Component {
 				studentRow.push(studentsList[i + j]);
 			}
 
-			studentGrid.push(
-				<div className="columns is-gapless is-multiline">
-					{studentRow}
-				</div>
-			);
-			studentGrid.push(
-				<div className="columns is-gapless is-multiline">
-					{studentRow}
-				</div>
-			);
-			studentGrid.push(
-				<div className="columns is-gapless is-multiline">
-					{studentRow}
-				</div>
-			);
-			studentGrid.push(
-				<div className="columns is-gapless is-multiline">
-					{studentRow}
-				</div>
-			);
 			studentGrid.push(
 				<div className="columns is-gapless is-multiline">
 					{studentRow}

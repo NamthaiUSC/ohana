@@ -185,7 +185,7 @@ export class SchoolSection extends Component {
 		switch (this.props.uni) {
 			case null:
 				return (
-					<div className="has-text-centered">
+					<div className="">
 						<span className="title is-2 has-text-grey-dark">
 							Begin your university search here!
 						</span>{" "}
@@ -196,12 +196,11 @@ export class SchoolSection extends Component {
 
 				return (
 					<div>
-						<div className="has-text-centered">
+						<div className="">
 							<div className="title is-2 has-text-grey-dark">
 								{universityName}
 							</div>
 							<div className="columns">
-								<div className="column is-one-fifth" />
 								<div className="column is-narrow">
 									{this.AddToApplyingButton()}
 								</div>
@@ -214,7 +213,6 @@ export class SchoolSection extends Component {
 								<div className="column is-narrow">
 									<a href={webPage}>{webPage}</a>
 								</div>
-								<div className="column is-one-fifth" />
 							</div>
 						</div>
 					</div>
